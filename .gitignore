@@ -5,3 +5,7 @@ token.json
 __pycache__/
 *.pyc
 
+# Node / Next.js
+node_modules/
+.next/
+out/
