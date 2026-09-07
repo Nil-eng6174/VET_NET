@@ -1,0 +1,437 @@
+{
+  "communities": {
+    "0": [
+      "main_backend_ai_rules",
+      "main_backend_ai_rules_calculate_risk",
+      "main_backend_ai_rules_get_recommendation",
+      "main_backend_app",
+      "main_backend_app_chat",
+      "main_backend_app_check_outbreak_threshold",
+      "main_backend_app_farmer_dashboard",
+      "main_backend_app_home",
+      "main_backend_app_init_excel",
+      "main_backend_app_ivr_finalize",
+      "main_backend_app_ivr_incoming",
+      "main_backend_app_ivr_process_animal",
+      "main_backend_app_ivr_process_language",
+      "main_backend_app_login",
+      "main_backend_app_logout",
+      "main_backend_app_rationale_104",
+      "main_backend_app_rationale_31",
+      "main_backend_app_rationale_62",
+      "main_backend_app_register",
+      "main_backend_app_send_outbreak_email",
+      "main_backend_app_submit",
+      "main_backend_app_uploaded_file",
+      "main_backend_app_user_info",
+      "main_backend_app_vet_dashboard",
+      "main_backend_app_vet_dashboard_data",
+      "main_backend_chatbot",
+      "main_backend_chatbot_get_chat_response",
+      "main_backend_sms",
+      "main_backend_sms_format_phone_number",
+      "main_backend_sms_rationale_18",
+      "main_backend_sms_rationale_33",
+      "main_backend_sms_send_sms",
+      "main_backend_test_chat",
+      "route"
+    ],
+    "1": [
+      "base",
+      "main_backend_app_api_routers_auth",
+      "main_backend_app_api_routers_auth_login",
+      "main_backend_app_api_routers_auth_py_post",
+      "main_backend_app_api_routers_auth_py_session",
+      "main_backend_app_api_routers_auth_register",
+      "main_backend_app_api_routers_cases",
+      "main_backend_app_api_routers_cases_get_cases",
+      "main_backend_app_api_routers_cases_py_get",
+      "main_backend_app_api_routers_cases_py_patch",
+      "main_backend_app_api_routers_cases_py_session",
+      "main_backend_app_api_routers_cases_update_case_status",
+      "main_backend_app_api_routers_dashboard",
+      "main_backend_app_api_routers_dashboard_get_summary",
+      "main_backend_app_api_routers_dashboard_py_get",
+      "main_backend_app_api_routers_dashboard_py_session",
+      "main_backend_app_api_routers_init",
+      "main_backend_app_database",
+      "main_backend_app_database_get_db",
+      "main_backend_app_main",
+      "main_backend_app_main_py_get",
+      "main_backend_app_main_read_root",
+      "main_backend_app_models",
+      "main_backend_app_models_healthreport",
+      "main_backend_app_models_user",
+      "main_backend_app_services_gis",
+      "main_backend_app_services_gis_detect_cluster",
+      "main_backend_app_services_gis_find_nearby_cases",
+      "main_backend_app_services_gis_py_session",
+      "main_backend_app_services_gis_rationale_7"
+    ],
+    "2": [
+      "main_frontend_tsconfig",
+      "main_frontend_tsconfig_compileroptions",
+      "main_frontend_tsconfig_compileroptions_allowjs",
+      "main_frontend_tsconfig_compileroptions_esmoduleinterop",
+      "main_frontend_tsconfig_compileroptions_incremental",
+      "main_frontend_tsconfig_compileroptions_isolatedmodules",
+      "main_frontend_tsconfig_compileroptions_jsx",
+      "main_frontend_tsconfig_compileroptions_lib",
+      "main_frontend_tsconfig_compileroptions_module",
+      "main_frontend_tsconfig_compileroptions_moduleresolution",
+      "main_frontend_tsconfig_compileroptions_noemit",
+      "main_frontend_tsconfig_compileroptions_paths",
+      "main_frontend_tsconfig_compileroptions_plugins",
+      "main_frontend_tsconfig_compileroptions_resolvejsonmodule",
+      "main_frontend_tsconfig_compileroptions_skiplibcheck",
+      "main_frontend_tsconfig_compileroptions_strict",
+      "main_frontend_tsconfig_compileroptions_target",
+      "main_frontend_tsconfig_exclude",
+      "main_frontend_tsconfig_include",
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "ref_mts",
+      "ref_next_dev_types_ts",
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx"
+    ],
+    "3": [
+      "main_frontend_src_app_farmer_dashboard_page",
+      "main_frontend_src_app_farmer_dashboard_page_farmerdashboardplaceholder",
+      "main_frontend_src_app_farmer_page",
+      "main_frontend_src_app_farmer_page_farmerdashboard",
+      "main_frontend_src_app_layout",
+      "main_frontend_src_app_layout_rootlayout",
+      "main_frontend_src_app_page",
+      "main_frontend_src_app_page_home",
+      "main_frontend_src_app_tactical_page",
+      "main_frontend_src_app_tactical_page_tacticalcommandpage",
+      "main_frontend_src_app_triage_page",
+      "main_frontend_src_app_triage_page_triagepage",
+      "main_frontend_src_app_vet_reports_page",
+      "main_frontend_src_app_vet_reports_page_vetreportsplaceholder",
+      "main_frontend_src_components_chatbot",
+      "main_frontend_src_components_chatbot_chatbot",
+      "main_frontend_src_i18n_i18n",
+      "main_frontend_src_i18n_i18n_i18ncontext",
+      "main_frontend_src_i18n_i18n_i18ncontexttype",
+      "main_frontend_src_i18n_i18n_i18nprovider",
+      "main_frontend_src_i18n_i18n_usetranslation",
+      "main_frontend_src_i18n_translations",
+      "main_frontend_src_i18n_translations_language",
+      "main_frontend_src_i18n_translations_translationkey",
+      "main_frontend_src_i18n_translations_translations"
+    ],
+    "4": [
+      "chart_js",
+      "main_frontend_package",
+      "main_frontend_package_dependencies",
+      "main_frontend_package_dependencies_chart_js",
+      "main_frontend_package_dependencies_leaflet",
+      "main_frontend_package_dependencies_next",
+      "main_frontend_package_dependencies_react",
+      "main_frontend_package_dependencies_react_chartjs_2",
+      "main_frontend_package_dependencies_react_dom",
+      "main_frontend_package_dependencies_react_leaflet",
+      "main_frontend_package_json_leaflet",
+      "main_frontend_package_name",
+      "main_frontend_package_private",
+      "main_frontend_package_scripts",
+      "main_frontend_package_scripts_build",
+      "main_frontend_package_scripts_dev",
+      "main_frontend_package_scripts_lint",
+      "main_frontend_package_scripts_start",
+      "main_frontend_package_version",
+      "next",
+      "react",
+      "react_chartjs_2",
+      "react_dom",
+      "react_leaflet"
+    ],
+    "5": [
+      "eslint",
+      "eslint_config_next",
+      "main_frontend_package_devdependencies",
+      "main_frontend_package_devdependencies_eslint",
+      "main_frontend_package_devdependencies_eslint_config_next",
+      "main_frontend_package_devdependencies_tailwindcss",
+      "main_frontend_package_devdependencies_tailwindcss_postcss",
+      "main_frontend_package_devdependencies_types_leaflet",
+      "main_frontend_package_devdependencies_types_node",
+      "main_frontend_package_devdependencies_types_react",
+      "main_frontend_package_devdependencies_types_react_dom",
+      "main_frontend_package_devdependencies_typescript",
+      "tailwindcss",
+      "tailwindcss_postcss",
+      "types_leaflet",
+      "types_node",
+      "types_react",
+      "types_react_dom",
+      "typescript"
+    ],
+    "6": [
+      "basemodel",
+      "main_backend_app_api_routers_reports",
+      "main_backend_app_api_routers_reports_create_report",
+      "main_backend_app_api_routers_reports_get_reports",
+      "main_backend_app_api_routers_reports_py_get",
+      "main_backend_app_api_routers_reports_py_post",
+      "main_backend_app_api_routers_reports_py_session",
+      "main_backend_app_schemas",
+      "main_backend_app_schemas_config",
+      "main_backend_app_schemas_reportcreate",
+      "main_backend_app_schemas_reportresponse",
+      "main_backend_app_schemas_sampleupdate",
+      "main_backend_app_schemas_userbase",
+      "main_backend_app_schemas_usercreate",
+      "main_backend_app_schemas_userresponse",
+      "main_backend_app_services_triage",
+      "main_backend_app_services_triage_calculate_risk",
+      "main_backend_app_services_triage_get_recommendation"
+    ],
+    "7": [
+      "main_backend_app_api_routers_samples",
+      "main_backend_app_api_routers_samples_create_sample",
+      "main_backend_app_api_routers_samples_get_samples",
+      "main_backend_app_api_routers_samples_py_get",
+      "main_backend_app_api_routers_samples_py_patch",
+      "main_backend_app_api_routers_samples_py_post",
+      "main_backend_app_api_routers_samples_py_session",
+      "main_backend_app_api_routers_samples_update_sample",
+      "main_backend_app_models_sample"
+    ],
+    "8": [
+      "main_backend_cloud_sync",
+      "main_backend_cloud_sync_authenticate_gdrive",
+      "main_backend_cloud_sync_backup_data",
+      "main_backend_cloud_sync_rationale_26",
+      "main_backend_cloud_sync_rationale_6",
+      "main_backend_cloud_sync_upload_to_gdrive"
+    ],
+    "9": [
+      "auto",
+      "leaflet_css",
+      "main_frontend_src_app_vet_page",
+      "main_frontend_src_app_vet_page_vetdashboard"
+    ],
+    "10": [
+      "main_frontend_eslint_config",
+      "main_frontend_eslint_config_eslintconfig"
+    ],
+    "11": [
+      "main_frontend_next_config",
+      "main_frontend_next_config_nextconfig"
+    ],
+    "12": [
+      "main_frontend_postcss_config",
+      "main_frontend_postcss_config_config"
+    ],
+    "13": [
+      "main_frontend_src_app_command_center_page",
+      "main_frontend_src_app_command_center_page_commandcenter"
+    ],
+    "14": [
+      "main_frontend_src_app_lab_page",
+      "main_frontend_src_app_lab_page_labdashboard"
+    ],
+    "15": [
+      "leaflet_leaflet"
+    ],
+    "16": [
+      "main_backend_app_api_init"
+    ],
+    "17": [
+      "main_backend_app_init"
+    ],
+    "18": [
+      "main_backend_app_services_init"
+    ],
+    "19": [
+      "main_backend_patch"
+    ],
+    "20": [
+      "main_backend_patch_ivr"
+    ],
+    "21": [
+      "main_backend_patch_ivr2"
+    ],
+    "22": [
+      "main_backend_sms_main"
+    ]
+  },
+  "cohesion": {
+    "0": 0.11764705882352941,
+    "1": 0.12873563218390804,
+    "2": 0.06896551724137931,
+    "3": 0.15333333333333332,
+    "4": 0.08333333333333333,
+    "5": 0.10526315789473684,
+    "6": 0.20261437908496732,
+    "7": 0.3611111111111111,
+    "8": 0.4666666666666667,
+    "9": 0.5,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0
+  },
+  "gods": [
+    {
+      "id": "main_frontend_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "main_frontend_src_i18n_i18n_usetranslation",
+      "label": "useTranslation()",
+      "degree": 15
+    },
+    {
+      "id": "main_backend_app_models_healthreport",
+      "label": "HealthReport",
+      "degree": 11
+    },
+    {
+      "id": "main_backend_chatbot_get_chat_response",
+      "label": "get_chat_response()",
+      "degree": 8
+    },
+    {
+      "id": "main_backend_app_init_excel",
+      "label": "init_excel()",
+      "degree": 7
+    },
+    {
+      "id": "main_backend_app_submit",
+      "label": "submit()",
+      "degree": 7
+    },
+    {
+      "id": "main_backend_app_api_routers_reports_create_report",
+      "label": "create_report()",
+      "degree": 7
+    },
+    {
+      "id": "main_frontend_tsconfig_include",
+      "label": "include",
+      "degree": 7
+    },
+    {
+      "id": "main_backend_app_models_sample",
+      "label": "Sample",
+      "degree": 6
+    },
+    {
+      "id": "main_backend_app_database_get_db",
+      "label": "get_db()",
+      "degree": 6
+    }
+  ],
+  "surprises": [
+    {
+      "source": "create_report()",
+      "target": "HealthReport",
+      "source_files": [
+        "main/backend/app/api/routers/reports.py",
+        "main/backend/app/models.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "get_reports()",
+      "target": "HealthReport",
+      "source_files": [
+        "main/backend/app/api/routers/reports.py",
+        "main/backend/app/models.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "update_sample()",
+      "target": "SampleUpdate",
+      "source_files": [
+        "main/backend/app/api/routers/samples.py",
+        "main/backend/app/schemas.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "register()",
+      "target": "UserCreate",
+      "source_files": [
+        "main/backend/app/api/routers/auth.py",
+        "main/backend/app/schemas.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "get_cases()",
+      "target": "HealthReport",
+      "source_files": [
+        "main/backend/app/api/routers/cases.py",
+        "main/backend/app/models.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `get_chat_response()` connect `app.py` to `reports.py`?",
+      "why": "High betweenness centrality (0.085) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `get_recommendation()` connect `reports.py` to `app.py`?",
+      "why": "High betweenness centrality (0.046) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `HealthReport` connect `HealthReport` to `reports.py`?",
+      "why": "High betweenness centrality (0.034) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 5 inferred relationships involving `HealthReport` (e.g. with `get_cases()` and `update_case_status()`) actually correct?",
+      "why": "`HealthReport` has 5 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `eslintConfig`, `nextConfig`, `config` to the rest of the system?",
+      "why": "51 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `app.py` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `HealthReport` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12873563218390804 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

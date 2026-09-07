@@ -1,0 +1,255 @@
+{
+  "communities": {
+    "0": [
+      "app",
+      "app_chat",
+      "app_farmer_dashboard",
+      "app_home",
+      "app_init_excel",
+      "app_login",
+      "app_logout",
+      "app_rationale_29",
+      "app_register",
+      "app_uploaded_file",
+      "app_user_info",
+      "app_vet_dashboard",
+      "app_vet_dashboard_data",
+      "route"
+    ],
+    "1": [
+      "cloud_sync",
+      "cloud_sync_authenticate_gdrive",
+      "cloud_sync_backup_data",
+      "cloud_sync_rationale_26",
+      "cloud_sync_rationale_6",
+      "cloud_sync_upload_to_gdrive"
+    ],
+    "2": [
+      "frontend_overview",
+      "frontend_overview_1_global_architecture",
+      "frontend_overview_2_screens_views",
+      "frontend_overview_3_api_contract_endpoints",
+      "frontend_overview_a_landing_authentication_screen",
+      "frontend_overview_authentication_apis",
+      "frontend_overview_b_farmer_dashboard",
+      "frontend_overview_c_veterinarian_dashboard",
+      "frontend_overview_functional_apis",
+      "frontend_overview_krishicare_frontend_blueprint"
+    ],
+    "3": [
+      "sms",
+      "sms_format_phone_number",
+      "sms_rationale_18",
+      "sms_rationale_33",
+      "sms_send_sms"
+    ],
+    "4": [
+      "ai_rules",
+      "ai_rules_calculate_risk",
+      "ai_rules_get_recommendation",
+      "app_submit",
+      "chatbot",
+      "chatbot_get_chat_response"
+    ],
+    "5": [
+      "app_check_outbreak_threshold",
+      "app_rationale_102",
+      "app_rationale_60",
+      "app_send_outbreak_email"
+    ],
+    "6": [
+      "pasu_frontend_overview_api_logout",
+      "pasu_templates_farmer_logout",
+      "pasu_templates_vet_logout"
+    ],
+    "7": [
+      "pasu_frontend_overview_submit",
+      "pasu_templates_farmer_submitreport",
+      "pasu_templates_index_submitreport"
+    ],
+    "8": [
+      "pasu_frontend_overview_api_login",
+      "pasu_templates_login_login"
+    ],
+    "9": [
+      "pasu_frontend_overview_api_register",
+      "pasu_templates_login_register"
+    ],
+    "10": [
+      "pasu_frontend_overview_api_vet_dashboard_data",
+      "pasu_templates_vet_loaddashboarddata"
+    ],
+    "11": [
+      "pasu_frontend_overview_api_user_info"
+    ],
+    "12": [
+      "pasu_frontend_overview_farmer_dashboard"
+    ],
+    "13": [
+      "pasu_frontend_overview_landing_authentication_screen"
+    ],
+    "14": [
+      "pasu_frontend_overview_veterinarian_dashboard"
+    ],
+    "15": [
+      "pasu_templates_index_logout"
+    ],
+    "16": [
+      "graphify_out_converted_farmer_data_901998c3",
+      "graphify_out_converted_farmer_data_901998c3_sheet_alerts",
+      "graphify_out_converted_farmer_data_901998c3_sheet_farmer_reports",
+      "graphify_out_converted_farmer_data_901998c3_sheet_farmers",
+      "graphify_out_converted_farmer_data_901998c3_sheet_veterinarians"
+    ]
+  },
+  "cohesion": {
+    "0": 0.27472527472527475,
+    "1": 0.4666666666666667,
+    "2": 0.2,
+    "3": 0.5,
+    "4": 0.4666666666666667,
+    "5": 0.5,
+    "6": 0.6666666666666666,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 0.4
+  },
+  "gods": [
+    {
+      "id": "app_submit",
+      "label": "submit()",
+      "degree": 7
+    },
+    {
+      "id": "app_init_excel",
+      "label": "init_excel()",
+      "degree": 6
+    },
+    {
+      "id": "sms_send_sms",
+      "label": "send_sms()",
+      "degree": 5
+    },
+    {
+      "id": "chatbot_get_chat_response",
+      "label": "get_chat_response()",
+      "degree": 5
+    },
+    {
+      "id": "ai_rules_get_recommendation",
+      "label": "get_recommendation()",
+      "degree": 4
+    },
+    {
+      "id": "app_check_outbreak_threshold",
+      "label": "check_outbreak_threshold()",
+      "degree": 4
+    },
+    {
+      "id": "frontend_overview_2_screens_views",
+      "label": "2. Screens & Views",
+      "degree": 4
+    },
+    {
+      "id": "frontend_overview_krishicare_frontend_blueprint",
+      "label": "KrishiCare Frontend Blueprint",
+      "degree": 4
+    },
+    {
+      "id": "app_chat",
+      "label": "chat()",
+      "degree": 3
+    },
+    {
+      "id": "app_login",
+      "label": "login()",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "loadDashboardData",
+      "target": "/api/vet/dashboard_data",
+      "source_files": [
+        "templates/vet.html",
+        "frontend_overview.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "logout",
+      "target": "/api/logout",
+      "source_files": [
+        "templates/farmer.html",
+        "frontend_overview.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "logout",
+      "target": "/api/logout",
+      "source_files": [
+        "templates/vet.html",
+        "frontend_overview.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "submitReport",
+      "target": "/submit",
+      "source_files": [
+        "templates/farmer.html",
+        "frontend_overview.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "submitReport",
+      "target": "submitReport",
+      "source_files": [
+        "templates/farmer.html",
+        "templates/index.html"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; semantically similar concepts with no structural link"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `send_sms()` connect `send_sms` to `app.py`, `submit`?",
+      "why": "High betweenness centrality (0.026) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `init_excel()` connect `app.py` to `submit`?",
+      "why": "High betweenness centrality (0.014) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `check_outbreak_threshold()` connect `check_outbreak_threshold` to `app.py`, `submit`?",
+      "why": "High betweenness centrality (0.013) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Sheet: Alerts`, `Sheet: Farmer Reports`, `Sheet: Farmers` to the rest of the system?",
+      "why": "23 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

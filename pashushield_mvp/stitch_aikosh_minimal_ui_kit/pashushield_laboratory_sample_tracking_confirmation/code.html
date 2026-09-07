@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-panel":"#0D131C","tertiary":"#00e297","surface-panel-active":"#131C2B","outline-variant":"#5a4138","on-error":"#690005","surface-dim":"#101319","depth-void":"#040609","primary-fixed-dim":"#ffb598","primary-container":"#f46216","error":"#ffb4ab","surface-base":"#080B10","secondary-fixed":"#dae3f8","inverse-primary":"#a53c00","on-surface":"#e1e2ea","on-primary-fixed":"#370e00","on-background":"#e1e2ea","tertiary-fixed-dim":"#00e297","radar-emerald":"#00E599","threat-crimson":"#FF2A3B","tertiary-container":"#00a56d","inverse-surface":"#e1e2ea","on-primary":"#591d00","surface-container-lowest":"#0b0e13","secondary-fixed-dim":"#bec7db","primary":"#ffb598","surface-container-high":"#272a30","error-container":"#93000a","secondary":"#bec7db","surface-variant":"#32353b","text-muted":"#64748B","telemetry-saffron":"#EA5B0C","primary-fixed":"#ffdbce","surface-container-highest":"#32353b","surface":"#101319","surface-container-low":"#191c21","on-primary-container":"#4e1800","on-secondary-container":"#acb5c9","telemetry-amber":"#F59E0B","surface-container":"#1d2025","on-secondary-fixed":"#131c2b","on-tertiary-fixed":"#002112","on-tertiary":"#003822","surface-bright":"#36393f","on-tertiary-container":"#00311d","data-parchment":"#F3EAD8","on-secondary":"#283141","on-primary-fixed-variant":"#7e2c00","border-grid":"#1E293B","outline":"#a98a7e","on-secondary-fixed-variant":"#3e4758","on-error-container":"#ffdad6","surface-tint":"#ffb598","secondary-container":"#3e4758","on-surface-variant":"#e2bfb2","inverse-on-surface":"#2d3036","background":"#101319","on-tertiary-fixed-variant":"#005234","tertiary-fixed":"#4dffb2","border-bright":"#334155"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"unit-6":"1.5rem","zero":"0px","unit-16":"4rem","gutter-mobile":"0.75rem","margin-desktop":"1.5rem","unit-2":"0.5rem","margin-mobile":"1rem","unit-5":"1.25rem","unit-3":"0.75rem","panel-gap":"1px","unit-8":"2rem","unit-1":"0.25rem","unit-4":"1rem","gutter-desktop":"1rem","unit-12":"3rem","unit-10":"2.5rem"},fontFamily:{"headline-xl":["Space Grotesk"],"body-sm":["Geist"],"headline-sm":["Space Grotesk"],"telemetry-num":["Space Grotesk"],"body-md":["Geist"],"label-md":["Space Grotesk"],"title-md":["Space Grotesk"],"title-lg":["Space Grotesk"],"body-lg":["Geist"],"headline-md":["Space Grotesk"],"headline-xl-mobile":["Space Grotesk"],"headline-lg-mobile":["Space Grotesk"],"headline-lg":["Space Grotesk"],"label-sm":["Space Grotesk"]},fontSize:{"headline-xl":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"600"}],"telemetry-num":["28px",{"lineHeight":"32px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"500"}],"title-md":["14px",{"lineHeight":"20px","letterSpacing":"0.04em","fontWeight":"600"}],"title-lg":["16px",{"lineHeight":"22px","letterSpacing":"0.02em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-xl-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-sm":["10px",{"lineHeight":"12px","letterSpacing":"0.08em","fontWeight":"700"}]}}}};</script></head><body class="bg-surface-base font-body-md text-on-surface min-h-screen antialiased selection:bg-telemetry-saffron selection:text-depth-void"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-panel/95 backdrop-blur-md border-b border-border-grid"><div class="h-16 w-full px-unit-6 flex items-center justify-between gap-unit-4"><div class="flex items-center gap-unit-4 shrink-0"><img alt="PashuShield Official Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XLDFrDglF2n3r1uftl6goq7UaqNywM2Y8F1AiGpEF9f2yjmaeRYSn6PlDywK2f9wJ1UUksm88RBO2IVnE0Ww_w3t1JskqMyVGZCs4ChjZiCwmC0Zv6qG8IENUxijWZ3KJXLy6oS21lwJg1Bi3e7vYCnNIWDJ96uf5OVMlXqGR4YTnqu595XvzdXTj-U_OT2TihUn11A2hBufR-4lKiCjQHOPqDL75oLHa3ZzgdWwWO4m0_jvF6QCL-MM4"/><div class="flex flex-col"><div class="flex items-center gap-unit-2"><span class="font-headline-sm text-headline-sm uppercase tracking-wider text-data-parchment font-bold">PashuShield</span><span class="px-unit-1 py-zero bg-telemetry-saffron/10 border border-telemetry-saffron text-telemetry-saffron font-label-sm text-label-sm uppercase tracking-widest">IndiaAI Node</span></div><span class="font-body-sm text-body-sm text-text-muted hidden sm:inline-block">National Livestock Biosecurity Surveillance System</span></div></div><div class="hidden xl:flex items-center gap-unit-4 px-unit-4 py-unit-1 bg-surface-base border border-border-grid"><div class="flex items-center gap-unit-2"><span class="w-2 h-2 rounded-full bg-radar-emerald animate-pulse"></span><span class="font-label-sm text-label-sm uppercase tracking-widest text-data-parchment">National AI Triage Node:</span><span class="font-label-sm text-label-sm uppercase font-bold text-radar-emerald">ACTIVE</span></div><span class="h-3 w-px bg-border-grid"></span><div class="flex items-center gap-unit-2 text-text-muted"><span class="material-symbols-outlined text-sm">location_on</span><span class="font-label-md text-label-md text-on-surface">Pune / Maharashtra (HQ-04)</span></div></div><div class="flex items-center gap-unit-4 shrink-0"><div class="hidden md:flex items-center gap-unit-2 bg-surface-panel-active border border-border-bright px-unit-3 py-unit-1"><span class="font-label-sm text-label-sm uppercase text-text-muted">Latency:</span><span class="font-telemetry-num text-body-sm text-radar-emerald font-bold">24ms</span><span class="h-3 w-px bg-border-grid"></span><span class="font-label-sm text-label-sm uppercase text-text-muted">Telemetry Sync:</span><span class="font-telemetry-num text-body-sm text-telemetry-amber font-bold">48H Active</span></div><div class="flex items-center gap-unit-3 pl-unit-2 border-l border-border-grid"><div class="flex flex-col text-right hidden lg:block"><span class="font-title-md text-title-md text-data-parchment font-semibold leading-tight">Dr. Rajesh K. Sharma</span><span class="font-label-sm text-label-sm text-telemetry-saffron uppercase tracking-wider">State Nodal Vet Officer</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-telemetry-saffron/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7z4ZJCosrTYwHrC7094cleLQLzJh_RAC0-TkVnDM92oWSX7_jJzwDi12BlRZbY1Gav9PMkjZcpAprjYFZPaO-etQR7WSTFdnT_bph7S_S4BN2w0IcAITe9RZJYSSjTUcXMHXoUpwCD2_AzzKrtsSA6JE7sTW0QtI4_v1lGZpnRi_XogxLvCy_rRVqrTaAIbpDWdw3Ysrv3P-YjNTnK21uSv6Quey7RMoo1K4mVBO_w_MgDMkoSGH3"/></div></div></div><div class="h-10 bg-surface-panel-active border-t border-border-grid px-unit-6 flex items-center justify-between overflow-x-auto"><div class="flex items-center gap-unit-6 shrink-0 font-label-md text-label-md"><div class="flex items-center gap-unit-2 text-text-muted"><span class="material-symbols-outlined text-sm">terminal</span><span>SYS-TELEMETRY: CLUSTER_ENG_v4.2</span></div><span class="text-border-bright">/</span><div class="flex items-center gap-unit-2"><span class="text-text-muted">RADIUS_THRESHOLD:</span><span class="text-telemetry-saffron font-bold">10.0 KM</span></div><span class="text-border-bright">/</span><div class="flex items-center gap-unit-2"><span class="text-text-muted">TEMPORAL_WINDOW:</span><span class="text-data-parchment font-bold">48 HRS</span></div></div><div class="hidden md:flex items-center gap-unit-4 font-label-sm text-label-sm text-text-muted shrink-0"><span class="flex items-center gap-unit-1"><span class="w-1.5 h-1.5 rounded-full bg-threat-crimson"></span> HIGH RISK SURVEILLANCE</span><span class="flex items-center gap-unit-1"><span class="w-1.5 h-1.5 rounded-full bg-telemetry-amber"></span> SUSPECTED CLUSTERS</span><span class="flex items-center gap-unit-1"><span class="w-1.5 h-1.5 rounded-full bg-radar-emerald"></span> LAB CONFIRMED</span></div></div></header><aside class="fixed left-0 top-26 bottom-0 w-64 bg-surface-panel border-r border-border-grid z-40 flex flex-col justify-between pt-unit-4 pb-unit-6"><div class="flex flex-col gap-unit-4"><div class="px-unit-4"><div class="font-label-sm text-label-sm uppercase tracking-widest text-text-muted mb-unit-2 px-unit-2">Platform Operations</div><nav class="flex flex-col gap-panel-gap" data-active-classes="bg-surface-panel-active text-telemetry-saffron font-bold border-l-2 border-telemetry-saffron"><a class="flex items-center gap-unit-3 px-unit-3 py-unit-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="command-center-live-gis" href="#"><span class="material-symbols-outlined text-lg">radar</span><span>Command Center / GIS</span></a><a class="flex items-center gap-unit-3 px-unit-3 py-unit-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="triage-field-reports" href="#"><span class="material-symbols-outlined text-lg">medical_services</span><span>Triage &amp; Field Reports</span></a><a class="flex items-center gap-unit-3 px-unit-3 py-unit-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="veterinary-case-queue" href="#"><span class="material-symbols-outlined text-lg">assignment</span><span>Veterinary Case Queue</span></a><a aria-current="page" class="flex items-center gap-unit-3 px-unit-3 py-unit-2 transition-colors bg-surface-panel-active text-telemetry-saffron font-bold border-l-2 border-telemetry-saffron" data-path="lab-samples-tracking" href="#"><span class="material-symbols-outlined text-lg">biotech</span><span>Lab Samples &amp; Tracking</span></a><a class="flex items-center gap-unit-3 px-unit-3 py-unit-2 text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="vaccination-prevention" href="#"><span class="material-symbols-outlined text-lg">vaccines</span><span>Vaccination &amp; Prevention</span></a></nav></div><div class="px-unit-4 pt-unit-4 border-t border-border-grid"><div class="font-label-sm text-label-sm uppercase tracking-widest text-text-muted mb-unit-2 px-unit-2">Surveillance Intelligence</div><div class="flex flex-col gap-panel-gap"><div class="px-unit-3 py-unit-2 bg-surface-base border border-border-grid"><div class="flex justify-between items-center mb-unit-1"><span class="font-label-sm text-label-sm uppercase text-text-muted">Active Alerts</span><span class="px-unit-1 bg-threat-crimson/20 text-threat-crimson font-label-sm text-label-sm font-bold">14 NEW</span></div><div class="font-headline-sm text-headline-sm text-threat-crimson">FMD Cluster (High)</div><div class="font-body-sm text-body-sm text-text-muted mt-unit-1">Zone 04 • 8.4 km proximity</div></div><div class="px-unit-3 py-unit-2 bg-surface-base border border-border-grid mt-unit-2"><div class="flex justify-between items-center mb-unit-1"><span class="font-label-sm text-label-sm uppercase text-text-muted">District Coverage</span><span class="text-radar-emerald font-label-sm text-label-sm font-bold">98.2%</span></div><div class="w-full bg-surface-container-high h-1"><div class="bg-radar-emerald h-1 w-[98%]"></div></div></div></div></div></div><div class="px-unit-6 flex flex-col gap-unit-2 border-t border-border-grid pt-unit-4"><div class="flex items-center justify-between text-text-muted font-label-sm text-label-sm"><span>INDIA-AI CERTIFIED</span><span class="material-symbols-outlined text-sm">verified_user</span></div><div class="font-body-sm text-body-sm text-text-muted">Biosecurity Sec-Protocol L4 Authorized for State Animal Husbandry</div></div></aside><div class="pl-64"><main class="relative pt-26 bg-surface-base min-h-screen"><div class="flex flex-col w-full">
+<!-- Sub-Header / Telemetry Filter Strip -->
+<div class="bg-surface-panel px-unit-6 py-unit-3 flex flex-wrap items-center justify-between gap-unit-4 border-b border-border-grid">
+<div class="flex items-center gap-unit-4 min-w-0">
+<div class="flex items-center gap-unit-2">
+<span class="material-symbols-outlined text-telemetry-saffron text-lg">biotech</span>
+<span class="font-headline-sm text-headline-sm uppercase tracking-wider text-data-parchment font-bold">STATE LAB DIAGNOSTIC NODE // SDDL-PUNE-01</span>
+</div>
+<span class="text-border-bright hidden sm:inline">|</span>
+<div class="hidden sm:flex items-center gap-unit-2 font-label-md text-label-md text-text-muted">
+<span>ISO/IEC 17025 ACCREDITED</span>
+<span class="px-unit-1 bg-surface-container-high text-telemetry-amber font-bold text-label-sm">BIO-SAFETY L3</span>
+</div>
+</div>
+<div class="flex items-center gap-unit-3">
+<div class="flex items-center gap-unit-2 px-unit-3 py-unit-1 bg-surface-base">
+<span class="w-2 h-2 rounded-full bg-radar-emerald animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase text-data-parchment tracking-widest">CHAIN-OF-CUSTODY AUDIT: VERIFIED</span>
+</div>
+<button class="bg-surface-panel-active text-data-parchment px-unit-3 py-unit-1 font-label-sm text-label-sm uppercase tracking-wider hover:bg-surface-container-high flex items-center gap-unit-1">
+<span class="material-symbols-outlined text-sm">print</span>
+        Manifest
+      </button>
+</div>
+</div>
+<!-- Main Grid Workspace -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-panel-gap bg-border-grid p-panel-gap">
+<!-- Top Hero Banner: Workflow Progress Tracker (Full Width across 12 cols) -->
+<div class="xl:col-span-12 bg-surface-panel p-unit-5 flex flex-col gap-unit-4">
+<div class="flex flex-wrap items-center justify-between gap-unit-2">
+<div class="flex items-center gap-unit-2">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-telemetry-saffron">STANDARD MVP WORKFLOW LIFECYCLE</span>
+<span class="text-text-muted text-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-data-parchment font-bold">ACTIVE SAMPLE: SMP-00192</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">
+          Cluster Ref: <span class="text-telemetry-amber font-semibold">CLST-MAH-PUN-084</span> (Baburdi 10km Radius • 48H Window)
+        </div>
+</div>
+<!-- Linear Step Progress Diagram with Sharp Brutalist Telemetry -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-panel-gap bg-border-grid p-panel-gap">
+<!-- Stage 1 -->
+<div class="bg-surface-base p-unit-3 flex flex-col justify-between h-20">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted font-bold">STAGE 01</span>
+<span class="material-symbols-outlined text-radar-emerald text-sm">check_circle</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-data-parchment uppercase">Sample Requested</div>
+<div class="font-body-sm text-body-sm text-text-muted">By Dr. R. Sharma (Vet)</div>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="bg-surface-base p-unit-3 flex flex-col justify-between h-20">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted font-bold">STAGE 02</span>
+<span class="material-symbols-outlined text-radar-emerald text-sm">check_circle</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-data-parchment uppercase">Sample Created</div>
+<div class="font-body-sm text-body-sm text-radar-emerald">ID: SMP-00192</div>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="bg-surface-base p-unit-3 flex flex-col justify-between h-20">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted font-bold">STAGE 03</span>
+<span class="material-symbols-outlined text-radar-emerald text-sm">check_circle</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-data-parchment uppercase">In Transit</div>
+<div class="font-body-sm text-body-sm text-text-muted">Cold Box #CB-448</div>
+</div>
+</div>
+<!-- Stage 4 -->
+<div class="bg-surface-base p-unit-3 flex flex-col justify-between h-20">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted font-bold">STAGE 04</span>
+<span class="material-symbols-outlined text-radar-emerald text-sm">check_circle</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-data-parchment uppercase">Received at SDDL</div>
+<div class="font-body-sm text-body-sm text-text-muted">Pune Diagnostic Hub</div>
+</div>
+</div>
+<!-- Stage 5 (Active) -->
+<div class="bg-surface-panel-active p-unit-3 flex flex-col justify-between h-20 shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-telemetry-saffron font-bold">STAGE 05 // ACTIVE</span>
+<span class="w-2 h-2 rounded-full bg-telemetry-amber animate-pulse"></span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-telemetry-saffron font-bold uppercase">Testing Pending</div>
+<div class="font-body-sm text-body-sm text-data-parchment">RT-PCR Assay Prep</div>
+</div>
+</div>
+<!-- Stage 6 -->
+<div class="bg-surface-base p-unit-3 flex flex-col justify-between h-20 opacity-60">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted font-bold">STAGE 06</span>
+<span class="material-symbols-outlined text-text-muted text-sm">radio_button_unchecked</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-text-muted uppercase">Resulted</div>
+<div class="font-body-sm text-body-sm text-text-muted">Advisory Ready</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Telemetry KPI Metrics Strip (12 Columns) -->
+<div class="xl:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-panel-gap bg-border-grid">
+<!-- Metric 1 -->
+<div class="bg-surface-panel p-unit-4 flex flex-col justify-between">
+<div class="flex justify-between items-center text-text-muted">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Avg Lab TAT (RT-PCR)</span>
+<span class="material-symbols-outlined text-base">timer</span>
+</div>
+<div class="flex items-baseline gap-unit-2 mt-unit-2">
+<span class="font-telemetry-num text-telemetry-num text-data-parchment">3h 42m</span>
+<span class="font-label-sm text-label-sm text-radar-emerald font-bold">↓ 28m vs 48H Avg</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 mt-unit-3">
+<div class="bg-radar-emerald h-1 w-[78%]"></div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-panel p-unit-4 flex flex-col justify-between">
+<div class="flex justify-between items-center text-text-muted">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Cold Chain Compliance</span>
+<span class="material-symbols-outlined text-base">ac_unit</span>
+</div>
+<div class="flex items-baseline gap-unit-2 mt-unit-2">
+<span class="font-telemetry-num text-telemetry-num text-data-parchment">99.4%</span>
+<span class="font-label-sm text-label-sm text-radar-emerald font-bold">+0.6%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 mt-unit-3">
+<div class="bg-radar-emerald h-1 w-[99%]"></div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-panel p-unit-4 flex flex-col justify-between">
+<div class="flex justify-between items-center text-text-muted">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Active Outbreak Samples</span>
+<span class="material-symbols-outlined text-threat-crimson text-base">warning</span>
+</div>
+<div class="flex items-baseline gap-unit-2 mt-unit-2">
+<span class="font-telemetry-num text-telemetry-num text-threat-crimson">03</span>
+<span class="font-label-sm text-label-sm text-threat-crimson font-bold uppercase">Priority: STAT</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 mt-unit-3">
+<div class="bg-threat-crimson h-1 w-[100%] animate-pulse"></div>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-panel p-unit-4 flex flex-col justify-between">
+<div class="flex justify-between items-center text-text-muted">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Advisory Broadcast Ready</span>
+<span class="material-symbols-outlined text-base">podcasts</span>
+</div>
+<div class="flex items-baseline gap-unit-2 mt-unit-2">
+<span class="font-telemetry-num text-telemetry-num text-telemetry-amber">12 Blocks</span>
+<span class="font-label-sm text-label-sm text-text-muted">Armed &amp; Syncing</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 mt-unit-3">
+<div class="bg-telemetry-amber h-1 w-[60%]"></div>
+</div>
+</div>
+</div>
+<!-- Left Column: Active Samples List & Registry (5 Cols on XL) -->
+<div class="xl:col-span-5 flex flex-col gap-panel-gap bg-border-grid">
+<!-- Panel Header -->
+<div class="bg-surface-panel px-unit-4 py-unit-3 flex items-center justify-between">
+<div class="flex items-center gap-unit-2">
+<span class="font-title-md text-title-md text-data-parchment uppercase">District Surveillance Samples</span>
+<span class="px-unit-2 py-zero bg-threat-crimson text-depth-void font-label-sm text-label-sm font-bold">3 ACTIVE</span>
+</div>
+<div class="flex items-center gap-unit-2">
+<button class="bg-surface-panel-active text-text-muted p-unit-1 hover:text-on-surface">
+<span class="material-symbols-outlined text-base">filter_list</span>
+</button>
+<button class="bg-surface-panel-active text-text-muted p-unit-1 hover:text-on-surface">
+<span class="material-symbols-outlined text-base">refresh</span>
+</button>
+</div>
+</div>
+<!-- Sample Card 1: SMP-00192 (Active Focused) -->
+<div class="bg-surface-panel-active p-unit-4 flex flex-col gap-unit-3 relative shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-unit-2">
+<span class="font-headline-sm text-headline-sm text-data-parchment font-bold">SMP-00192</span>
+<span class="px-unit-2 py-0.5 bg-threat-crimson text-depth-void font-label-sm text-label-sm font-bold uppercase tracking-wider">STAT / OUTBREAK</span>
+</div>
+<span class="font-body-sm text-body-sm text-telemetry-saffron font-medium">Cattle Vesicular Swab • Oral Lesion Slough</span>
+</div>
+<span class="px-unit-2 py-1 bg-surface-container text-telemetry-amber font-label-sm text-label-sm uppercase font-bold">
+            Testing Pending
+          </span>
+</div>
+<div class="grid grid-cols-2 gap-unit-2 bg-surface-base p-unit-3 font-body-sm text-body-sm">
+<div>
+<span class="text-text-muted block text-label-sm uppercase">Origin Location</span>
+<span class="text-data-parchment font-semibold">Baburdi Village</span>
+<span class="text-text-muted block text-xs">Lat: 18.5204 | Lon: 73.8567</span>
+</div>
+<div>
+<span class="text-text-muted block text-label-sm uppercase">Required Diagnostics</span>
+<span class="text-data-parchment font-semibold">Real-Time RT-PCR + ELISA</span>
+<span class="text-radar-emerald block text-xs">VTM Integrity: 4°C Confirmed</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-text-muted pt-unit-1">
+<div class="flex items-center gap-unit-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>Collected: 08:30 AM (6h ago)</span>
+</div>
+<span class="text-telemetry-saffron font-label-sm text-label-sm uppercase font-bold tracking-wider">SELECTED FOR ENTRY →</span>
+</div>
+</div>
+<!-- Sample Card 2: SMP-00188 -->
+<div class="bg-surface-panel p-unit-4 flex flex-col gap-unit-3 hover:bg-surface-panel-active transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-unit-2">
+<span class="font-headline-sm text-headline-sm text-data-parchment font-bold">SMP-00188</span>
+<span class="px-unit-2 py-0.5 bg-surface-container text-text-muted font-label-sm text-label-sm font-bold uppercase tracking-wider">ROUTINE SURV</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">Buffalo Serum • Whole Blood Centrifuged</span>
+</div>
+<span class="px-unit-2 py-1 bg-radar-emerald/10 text-radar-emerald font-label-sm text-label-sm uppercase font-bold">
+            Resulted (Negative)
+          </span>
+</div>
+<div class="grid grid-cols-2 gap-unit-2 bg-surface-base p-unit-3 font-body-sm text-body-sm">
+<div>
+<span class="text-text-muted block text-label-sm uppercase">Origin Location</span>
+<span class="text-data-parchment font-semibold">Khed Taluka</span>
+<span class="text-text-muted block text-xs">Herd ID: #HD-KHED-09</span>
+</div>
+<div>
+<span class="text-text-muted block text-label-sm uppercase">Test Performed</span>
+<span class="text-data-parchment font-semibold">Brucella Ab ELISA</span>
+<span class="text-text-muted block text-xs">Result Date: Yesterday (16:15)</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-text-muted pt-unit-1">
+<div class="flex items-center gap-unit-1">
+<span class="material-symbols-outlined text-sm text-radar-emerald">verified</span>
+<span class="text-radar-emerald">Signed by Senior Virologist</span>
+</div>
+<button class="text-text-muted hover:text-data-parchment text-label-sm uppercase font-bold tracking-wider">View PDF •</button>
+</div>
+</div>
+<!-- Sample Card 3: SMP-00179 -->
+<div class="bg-surface-panel p-unit-4 flex flex-col gap-unit-3 hover:bg-surface-panel-active transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-unit-2">
+<span class="font-headline-sm text-headline-sm text-data-parchment font-bold">SMP-00179</span>
+<span class="px-unit-2 py-0.5 bg-threat-crimson/20 text-threat-crimson font-label-sm text-label-sm font-bold uppercase tracking-wider">OUTBREAK CONFIRMED</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">Bovine Epithelial Tissue • Tongue Vesicle</span>
+</div>
+<span class="px-unit-2 py-1 bg-threat-crimson/20 text-threat-crimson font-label-sm text-label-sm uppercase font-bold">
+            FMD Type O Confirmed
+          </span>
+</div>
+<div class="grid grid-cols-2 gap-unit-2 bg-surface-base p-unit-3 font-body-sm text-body-sm">
+<div>
+<span class="text-text-muted block text-label-sm uppercase">Origin Location</span>
+<span class="text-data-parchment font-semibold">Baramati Sector 2</span>
+<span class="text-text-muted block text-xs">Case #CAS-2025-0419</span>
+</div>
+<div>
+<span class="text-text-muted block text-label-sm uppercase">Advisory Action</span>
+<span class="text-threat-crimson font-semibold">10km Ring Triggered</span>
+<span class="text-text-muted block text-xs">Broadcast at 22:40 (48h ago)</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-text-muted pt-unit-1">
+<div class="flex items-center gap-unit-1">
+<span class="material-symbols-outlined text-sm text-telemetry-amber">notification_important</span>
+<span class="text-telemetry-amber">14 Block Officers Alerted</span>
+</div>
+<button class="text-text-muted hover:text-data-parchment text-label-sm uppercase font-bold tracking-wider">Trace History •</button>
+</div>
+</div>
+<!-- Quick Registry Search/Scan Bar -->
+<div class="bg-surface-panel p-unit-4 flex items-center gap-unit-2">
+<span class="material-symbols-outlined text-text-muted">qr_code_scanner</span>
+<input class="bg-surface-base text-data-parchment px-unit-3 py-unit-2 font-body-md text-body-md w-full focus:outline-none" placeholder="Scan Barcode or Enter Sample ID (e.g. SMP-00193)..." type="text"/>
+<button class="bg-surface-panel-active text-data-parchment px-unit-4 py-unit-2 font-label-sm text-label-sm uppercase tracking-wider hover:bg-surface-container-high whitespace-nowrap">
+          Find
+        </button>
+</div>
+</div>
+<!-- Right Column: Lab Action Card / Result Entry & Chain of Custody (7 Cols on XL) -->
+<div class="xl:col-span-7 flex flex-col gap-panel-gap bg-border-grid">
+<!-- Interactive Action Card Container -->
+<div class="bg-surface-panel p-unit-6 flex flex-col gap-unit-6">
+<!-- Header Strip for SMP-00192 -->
+<div class="flex flex-wrap items-center justify-between gap-unit-3 border-b border-border-grid pb-unit-4">
+<div>
+<div class="flex items-center gap-unit-2">
+<span class="font-headline-md text-headline-md text-data-parchment font-bold">DIAGNOSTIC ACTION // SMP-00192</span>
+<span class="px-unit-2 py-0.5 bg-threat-crimson text-depth-void font-label-sm text-label-sm font-bold uppercase">HIGH PRIORITY</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-unit-1">
+              Automated correlation linked with Field Case <strong class="text-data-parchment">#CAS-2025-0482</strong> (Farmer: Devidas Jadhav, 4 Cattle showing salivation and podal lesions).
+            </p>
+</div>
+<div class="flex items-center gap-unit-2">
+<span class="font-label-sm text-label-sm uppercase text-text-muted">Cold Chain:</span>
+<span class="px-unit-2 py-0.5 bg-radar-emerald/20 text-radar-emerald font-telemetry-num text-sm font-bold">3.8°C STABLE</span>
+</div>
+</div>
+<!-- Sample Metadata & Chain of Custody Table -->
+<div class="flex flex-col gap-unit-3">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-text-muted">Chain-of-Custody &amp; Sample Telemetry</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-panel-gap bg-border-grid p-panel-gap">
+<div class="bg-surface-base p-unit-3 flex flex-col">
+<span class="text-text-muted text-label-sm uppercase">Collection Node</span>
+<span class="text-data-parchment font-semibold mt-unit-1">Mobile Triage Van #03</span>
+<span class="text-text-muted text-xs">Officer: V. Shinde (LDO)</span>
+<span class="text-telemetry-saffron text-xs font-mono mt-unit-1">GPS: 18.5204N, 73.8567E</span>
+</div>
+<div class="bg-surface-base p-unit-3 flex flex-col">
+<span class="text-text-muted text-label-sm uppercase">Sample Matrix</span>
+<span class="text-data-parchment font-semibold mt-unit-1">Vesicular Fluid &amp; Swab</span>
+<span class="text-text-muted text-xs">Media: Phosphate Buffered Glyc.</span>
+<span class="text-radar-emerald text-xs font-mono mt-unit-1">Barcoded: #890422910</span>
+</div>
+<div class="bg-surface-base p-unit-3 flex flex-col">
+<span class="text-text-muted text-label-sm uppercase">Custody Transfer Log</span>
+<span class="text-data-parchment font-semibold mt-unit-1">SDDL Accession Desk</span>
+<span class="text-text-muted text-xs">Received: Today, 11:14 AM</span>
+<span class="text-data-parchment text-xs font-mono mt-unit-1">Intake By: Lab Tech Anjali M.</span>
+</div>
+</div>
+</div>
+<!-- Visual Testing Assay Status (Interactive Result Entry Form) -->
+<div class="flex flex-col gap-unit-4 bg-surface-base p-unit-5">
+<div class="flex items-center justify-between border-b border-border-grid pb-unit-3">
+<div class="flex items-center gap-unit-2">
+<span class="material-symbols-outlined text-telemetry-saffron">science</span>
+<span class="font-title-lg text-title-lg uppercase text-data-parchment font-bold">Enter Confirmatory Diagnostic Results</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted">FORM ID: LAB-RES-REV4</span>
+</div>
+<!-- Form Fields Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-4">
+<!-- Field 1: Diagnostic Assay -->
+<div class="flex flex-col gap-unit-1">
+<label class="font-label-sm text-label-sm uppercase text-text-muted font-bold">Diagnostic Assay Type</label>
+<select class="bg-surface-panel text-data-parchment px-unit-3 py-unit-2 font-body-md text-body-md focus:outline-none" id="assay-select">
+<option selected="" value="rt-pcr">Real-Time RT-PCR (3D Gene Target)</option>
+<option value="antigen-elisa">Solid-Phase Antigen Capture ELISA</option>
+<option value="virus-iso">Cell Culture Virus Isolation (BHK-21)</option>
+<option value="lateral-flow">Pen-Side Antigen Rapid Strip (Confirmatory)</option>
+</select>
+<span class="font-body-sm text-body-sm text-text-muted">Standard protocol for Vesicular Aphtovirus detection.</span>
+</div>
+<!-- Field 2: Pathogen Identification -->
+<div class="flex flex-col gap-unit-1">
+<label class="font-label-sm text-label-sm uppercase text-text-muted font-bold">Pathogen / Agent Identification</label>
+<select class="bg-surface-panel text-data-parchment px-unit-3 py-unit-2 font-body-md text-body-md focus:outline-none" id="pathogen-select">
+<option selected="" value="fmd">Foot-and-Mouth Disease Virus (Aphtovirus)</option>
+<option value="lumpy">Lumpy Skin Disease Virus (Capripoxvirus)</option>
+<option value="ppr">Peste des Petits Ruminants (Morbillivirus)</option>
+<option value="negative">No Viral Target Detected (Negative)</option>
+</select>
+<span class="font-body-sm text-body-sm text-text-muted">Primary suspect category flagged by AI Triage: 87/100.</span>
+</div>
+<!-- Field 3: Strain Detection & Ct Value -->
+<div class="flex flex-col gap-unit-1">
+<label class="font-label-sm text-label-sm uppercase text-text-muted font-bold">Serotype / Strain Specificity</label>
+<div class="grid grid-cols-2 gap-unit-2">
+<select class="bg-surface-panel text-data-parchment px-unit-3 py-unit-2 font-body-md text-body-md focus:outline-none" id="strain-select">
+<option selected="" value="type-o">Serotype O (Ind2001 lineage)</option>
+<option value="type-a">Serotype A</option>
+<option value="type-asia1">Serotype Asia-1</option>
+<option value="untyped">Pending Lineage Sequencing</option>
+</select>
+<input class="bg-surface-panel text-telemetry-amber font-mono px-unit-3 py-unit-2 font-body-md text-body-md focus:outline-none" id="ct-input" type="text" value="Ct: 19.4 (High Viral Load)"/>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">Indicates acute viral shedding phase.</span>
+</div>
+<!-- Field 4: Scientist Sign-Off -->
+<div class="flex flex-col gap-unit-1">
+<label class="font-label-sm text-label-sm uppercase text-text-muted font-bold">Certifying Laboratory Scientist</label>
+<div class="flex items-center gap-unit-2 bg-surface-panel px-unit-3 py-unit-2">
+<span class="material-symbols-outlined text-radar-emerald text-sm">verified_user</span>
+<span class="text-data-parchment font-body-md text-body-md font-semibold">Dr. S. Patil, Ph.D (Virology)</span>
+<span class="text-text-muted text-xs ml-auto">SDDL-9042</span>
+</div>
+<span class="font-body-sm text-body-sm text-text-muted">Digital signature cryptographic hash embedded on publish.</span>
+</div>
+</div>
+<!-- Lab Notes / Quality Control -->
+<div class="flex flex-col gap-unit-1 pt-unit-2">
+<label class="font-label-sm text-label-sm uppercase text-text-muted font-bold">Scientist Quality Control Observations</label>
+<textarea class="bg-surface-panel text-data-parchment px-unit-3 py-unit-2 font-body-md text-body-md focus:outline-none" placeholder="Add clinical lab commentary for the field teams..." rows="2">Strong 3D gene amplification curve confirmed in duplicate. Negative control pristine. Sample valid. High probability of rapid local transmission if movement is unrestricted.</textarea>
+</div>
+<!-- Automation Advisory Preview Alert Box -->
+<div class="bg-threat-crimson/10 p-unit-4 flex flex-col gap-unit-2" id="advisory-preview-box">
+<div class="flex items-center gap-unit-2 text-threat-crimson">
+<span class="material-symbols-outlined text-base">emergency_share</span>
+<span class="font-title-md text-title-md uppercase font-bold">Automated Ring Containment Advisory Ready</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Publishing this confirmed result will instantaneously activate a <strong>10.0 KM Territorial Quarantine Ring</strong> around Baburdi Village, triggering automated SMS/IVR dispatch to <strong>6 Village Veterinary Officers</strong> and prioritizing ring vaccination for <strong>1,420 bovines</strong>.
+            </p>
+</div>
+<!-- Actions Footer: The Core One-Click Trigger Button -->
+<div class="flex flex-wrap items-center justify-between gap-unit-4 pt-unit-3">
+<div class="flex items-center gap-unit-2">
+<label class="flex items-center gap-unit-2 cursor-pointer">
+<input checked="" class="w-4 h-4 accent-telemetry-saffron" type="checkbox"/>
+<span class="font-label-sm text-label-sm uppercase text-text-muted">Sync with NADRES / Bharat Pashudhan</span>
+</label>
+</div>
+<div class="flex items-center gap-unit-3">
+<button class="bg-surface-panel text-data-parchment px-unit-4 py-unit-2 font-label-sm text-label-sm uppercase tracking-wider hover:bg-surface-container-high transition-colors">
+                Save Draft
+              </button>
+<button class="bg-telemetry-saffron text-depth-void font-title-md text-title-md font-bold px-unit-6 py-unit-3 uppercase tracking-wider hover:bg-threat-crimson transition-colors flex items-center gap-unit-2 shadow-md" id="publish-advisory-btn">
+<span class="material-symbols-outlined text-lg">crisis_alert</span>
+<span>Publish Confirmed Result &amp; Broadcast Ring Advisory</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Real-Time RT-PCR Amplification Curve Visualizer (Data Rich Component) -->
+<div class="bg-surface-panel p-unit-5 flex flex-col gap-unit-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-unit-2">
+<span class="material-symbols-outlined text-telemetry-amber text-base">show_chart</span>
+<span class="font-title-md text-title-md uppercase text-data-parchment font-bold">Fluorophore Amplification Telemetry (FAM-Channel)</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted font-mono">ASSAY_RUN: #PCR-2025-881</span>
+</div>
+<div class="bg-surface-base p-unit-4 flex flex-col gap-unit-2">
+<!-- Inline SVG Chart for PCR Sigmoid Curve -->
+<div class="w-full h-40 relative">
+<svg class="w-full h-full text-telemetry-saffron" fill="none" preserveaspectratio="none" viewbox="0 0 500 120">
+<!-- Grid hairlines -->
+<line stroke="#1E293B" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="500" y1="30" y2="30"></line>
+<line stroke="#1E293B" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="500" y1="60" y2="60"></line>
+<line stroke="#1E293B" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="500" y1="90" y2="90"></line>
+<line stroke="#EA5B0C" stroke-dasharray="2 2" stroke-width="1" x1="180" x2="180" y1="0" y2="120"></line>
+<!-- Baseline / Threshold Line -->
+<line stroke="#64748B" stroke-width="1" x1="0" x2="500" y1="85" y2="85"></line>
+<!-- Sample SMP-00192 Sigmoidal Curve (High Positive) -->
+<path d="M 0,110 L 120,110 C 160,110 170,95 190,65 C 210,35 240,20 300,18 L 500,15" stroke="#EA5B0C" stroke-width="3"></path>
+<!-- Negative Control (Flat) -->
+<path d="M 0,110 L 500,109" stroke="#334155" stroke-dasharray="4 4" stroke-width="2"></path>
+<!-- Reference Control (Normal Sigmoid) -->
+<path d="M 0,110 L 220,110 C 260,110 275,90 295,55 C 315,25 350,22 500,20" opacity="0.6" stroke="#00E599" stroke-width="1.5"></path>
+</svg>
+<!-- Annotation Badge at Ct inflection point -->
+<div class="absolute left-[36%] top-[35%] bg-surface-panel-active px-unit-2 py-0.5 text-xs text-telemetry-saffron font-mono">
+              Ct: 19.4 Threshold Crossing
+            </div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-text-muted font-mono pt-unit-1">
+<span class="flex items-center gap-unit-1">
+<span class="w-2 h-2 rounded-full bg-telemetry-saffron"></span> Target 3D Gene (SMP-00192)
+            </span>
+<span class="flex items-center gap-unit-1">
+<span class="w-2 h-2 rounded-full bg-radar-emerald"></span> Positive Control (Serotype O)
+            </span>
+<span class="flex items-center gap-unit-1">
+<span class="w-2 h-2 rounded-full bg-border-bright"></span> NTC (No Template)
+            </span>
+<span>Cycles: 40 // Completed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Real-time Interactive Notification Banner (Appears on Trigger) -->
+<div class="hidden fixed bottom-6 right-6 z-50 bg-threat-crimson text-depth-void p-unit-4 shadow-xl max-w-md flex items-start gap-unit-3" id="broadcast-toast">
+<span class="material-symbols-outlined text-2xl font-bold">campaign</span>
+<div class="flex flex-col">
+<div class="font-headline-sm text-headline-sm uppercase font-bold leading-tight">OUTBREAK ADVISORY BROADCASTED</div>
+<div class="font-body-sm text-body-sm font-medium mt-unit-1">
+        Confirmed FMD Type O logged. 10km containment perimeter initiated for Baburdi cluster. Block officers notified via IndiaAI alert dispatch.
+      </div>
+<div class="mt-unit-2 flex items-center gap-unit-2">
+<span class="font-label-sm text-label-sm font-bold bg-depth-void text-data-parchment px-unit-2 py-0.5 uppercase">SYNC COMPLETE</span>
+<button class="font-label-sm text-label-sm font-bold text-depth-void underline uppercase ml-auto" id="close-toast-btn">Dismiss</button>
+</div>
+</div>
+</div>
+<!-- Vanilla Interaction Logic -->
+<script>
+    (function() {
+      const publishBtn = document.getElementById('publish-advisory-btn');
+      const broadcastToast = document.getElementById('broadcast-toast');
+      const closeToastBtn = document.getElementById('close-toast-btn');
+
+      if (publishBtn && broadcastToast) {
+        publishBtn.addEventListener('click', function() {
+          // Visual click feedback
+          publishBtn.classList.remove('bg-telemetry-saffron');
+          publishBtn.classList.add('bg-radar-emerald', 'text-depth-void');
+          publishBtn.innerHTML = '<span class="material-symbols-outlined text-lg">check_circle</span><span>ADVISORY BROADCASTED & ACTIVE</span>';
+
+          // Show high-priority Toast
+          broadcastToast.classList.remove('hidden');
+
+          // Auto-hide after 8 seconds
+          setTimeout(() => {
+            broadcastToast.classList.add('hidden');
+          }, 8000);
+        });
+      }
+
+      if (closeToastBtn && broadcastToast) {
+        closeToastBtn.addEventListener('click', function() {
+          broadcastToast.classList.add('hidden');
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

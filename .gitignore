@@ -9,3 +9,12 @@ __pycache__/
 node_modules/
 .next/
 out/
+# DB and models
+faiss_index/
+*.sqlite3
+*.db
+
+# Python
+venv/
+.venv/
+venv*/

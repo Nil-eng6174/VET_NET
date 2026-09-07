@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  /* Light mode palette adapted from the tactical dark theme */
+  --color-surface-base: #f8fafc;
+  --color-on-surface: #0f172a;
+  
+  --color-surface-panel: #ffffff;
+  --color-surface-panel-active: #f1f5f9;
+  --color-surface-container-high: #e2e8f0;
+  
+  --color-depth-void: #ffffff;
+  
+  --color-primary: #ea5b0c;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ffdbce;
+  --color-on-primary-container: #4e1800;
+  
+  --color-secondary: #3e4758;
+  --color-secondary-fixed: #1e293b;
+  
+  --color-text-muted: #64748b;
+  --color-data-parchment: #334155;
+  
+  --color-radar-emerald: #059669;
+  --color-telemetry-saffron: #ea5b0c;
+  --color-telemetry-amber: #d97706;
+  --color-threat-crimson: #dc2626;
+  
+  --color-border-grid: #e2e8f0;
+  --color-border-subtle: #cbd5e1;
+  --color-outline-variant: #94a3b8;
+  
+  --color-error-container: #fee2e2;
+  --color-on-error-container: #991b1b;
+}
+
+@theme inline {
+  --color-surface-base: var(--color-surface-base);
+  --color-on-surface: var(--color-on-surface);
+  --color-surface-panel: var(--color-surface-panel);
+  --color-surface-panel-active: var(--color-surface-panel-active);
+  --color-surface-container-high: var(--color-surface-container-high);
+  --color-depth-void: var(--color-depth-void);
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+  --color-primary-container: var(--color-primary-container);
+  --color-on-primary-container: var(--color-on-primary-container);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-fixed: var(--color-secondary-fixed);
+  --color-text-muted: var(--color-text-muted);
+  --color-data-parchment: var(--color-data-parchment);
+  --color-radar-emerald: var(--color-radar-emerald);
+  --color-telemetry-saffron: var(--color-telemetry-saffron);
+  --color-telemetry-amber: var(--color-telemetry-amber);
+  --color-threat-crimson: var(--color-threat-crimson);
+  --color-border-grid: var(--color-border-grid);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-outline-variant: var(--color-outline-variant);
+  --color-error-container: var(--color-error-container);
+  --color-on-error-container: var(--color-on-error-container);
+
+  --font-sans: 'Geist', Arial, Helvetica, sans-serif;
+  --font-display: 'Space Grotesk', 'Geist', sans-serif;
+  
+  /* Font classes mapping */
+  --font-body-sm: 'Geist', sans-serif;
+  --font-body-md: 'Geist', sans-serif;
+  --font-body-lg: 'Geist', sans-serif;
+  
+  --font-label-sm: 'Space Grotesk', sans-serif;
+  --font-label-md: 'Space Grotesk', sans-serif;
+  
+  --font-title-md: 'Space Grotesk', sans-serif;
+  --font-title-lg: 'Space Grotesk', sans-serif;
+  
+  --font-headline-sm: 'Space Grotesk', sans-serif;
+  --font-headline-md: 'Space Grotesk', sans-serif;
+  --font-headline-lg: 'Space Grotesk', sans-serif;
+  --font-telemetry-num: 'Space Grotesk', sans-serif;
+}
+
+body {
+  background-color: var(--color-surface-base);
+  color: var(--color-on-surface);
+}
+
+/* Glass card style for components */
+.glass-card {
+  background: var(--color-surface-panel);
+  border: 1px solid var(--color-border-grid);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.aadhaar-input {
+  letter-spacing: 0.2em;
+  font-family: monospace;
+}
