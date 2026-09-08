@@ -12,11 +12,12 @@ from twilio.twiml.voice_response import VoiceResponse, Gather
 
 
 app = Flask(__name__)
-app.secret_key = "super_secret_krishicare_key_change_in_production"
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "super_secret_krishicare_key_change_in_production")
 
-EXCEL_FILE = "farmer_data.xlsx"
+EXCEL_FILE = os.getenv("EXCEL_FILE", "farmer_data.xlsx")
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+DEFAULT_LOCALITY = os.getenv("DEFAULT_LOCALITY", "Pune")
 
 REPORT_HEADERS = [
     "Username", "Mobile", "Password", "Locality", "Animal", "Num Animals", "Num Mortality", "Main Symptom", 
@@ -294,11 +295,19 @@ def register():
     # Check if exists
     sheet_name = "Farmers" if role == "Farmer" else "Veterinarians"
     sheet = workbook[sheet_name]
-    
+
     for row in sheet.iter_rows(min_row=2, values_only=True):
         if row[2] == aadhaar: # Aadhaar column
             return jsonify({"success": False, "message": "Aadhaar already registered!"})
-            
+
+    # Strict role separation: an Aadhaar may hold only ONE role.
+    # Block registration in the second sheet so a farmer ID can never log in as a vet (or vice versa).
+    other_role_name = "Veterinarian" if role == "Farmer" else "Farmer"
+    other_sheet = workbook["Veterinarians" if role == "Farmer" else "Farmers"]
+    for row in other_sheet.iter_rows(min_row=2, values_only=True):
+        if row and row[2] == aadhaar:
+            return jsonify({"success": False, "message": f"This Aadhaar is already registered as a {other_role_name}. Please login as {other_role_name}."})
+
     if role == "Farmer":
         sheet.append([role, name, aadhaar, mobile, locality])
     else:
@@ -352,12 +361,95 @@ def user_info():
     return jsonify({"success": False})
 
 
+# ================== FARMER HISTORY ================== #
+
+@app.route("/api/farmer/history", methods=["GET"])
+def farmer_history():
+    """Return the logged-in farmer's info and their past reports from the Excel sheet."""
+    # Identity comes from the frontend's localStorage pass-through (same as /submit)
+    aadhaar = request.args.get("aadhaar", "").strip()
+    mobile  = request.args.get("mobile", "").strip()
+
+    init_excel()
+    workbook = load_workbook(EXCEL_FILE)
+    sheet = workbook["Farmer Reports"]
+
+    history = []
+    for row in sheet.iter_rows(min_row=2, values_only=True):
+        if not row or not row[0]:
+            continue
+        # Row layout: [Username, Mobile, Password, Locality, Animal, Num Animals, Num Mortality,
+        #              Main Symptom, Additional Symptoms, Duration, Notes, Image, Risk Score,
+        #              Risk Level, Recommendation, Date & Time, Aadhaar, Latitude, Longitude]
+        row_mobile = str(row[1]).strip() if len(row) > 1 and row[1] else ""
+        row_aadhaar = str(row[16]).strip() if len(row) > 16 and row[16] else ""
+
+        # Match on aadhaar first, fall back to mobile (IVR callers only have a phone number)
+        if not ((aadhaar and aadhaar == row_aadhaar) or (mobile and mobile == row_mobile)):
+            continue
+
+        history.append({
+            "date": row[15] if len(row) > 15 else "",
+            "animal": row[4] if len(row) > 4 else "",
+            "symptom": row[7] if len(row) > 7 else "",
+            "additional_symptoms": row[8] if len(row) > 8 else "",
+            "num_animals": row[5] if len(row) > 5 else "",
+            "num_mortality": row[6] if len(row) > 6 else "",
+            "risk_score": row[12] if len(row) > 12 else "",
+            "risk_level": row[13] if len(row) > 13 else "",
+            "recommendation": row[14] if len(row) > 14 else "",
+            "image": row[11] if len(row) > 11 else "",
+        })
+
+    # Newest first
+    history.sort(key=lambda r: str(r["date"]), reverse=True)
+
+    # Farmer info pulled from the matched report rows (reports carry the farmer's identity)
+    info = {}
+    if history:
+        # Name, locality and mobile come from the most recent matching report row.
+        # IVR callers only leave a phone number, so name falls back to a generic label.
+        name = ""
+        locality = ""
+        matched_mobile = ""
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            if not row or not row[0]:
+                continue
+            row_mobile = str(row[1]).strip() if len(row) > 1 and row[1] else ""
+            row_aadhaar = str(row[16]).strip() if len(row) > 16 and row[16] else ""
+            if (aadhaar and aadhaar == row_aadhaar) or (mobile and mobile == row_mobile):
+                if row[0]:
+                    name = str(row[0])
+                if len(row) > 3 and row[3]:
+                    locality = str(row[3])
+                if len(row) > 1 and row[1]:
+                    matched_mobile = str(row[1])
+        # Generic label for IVR callers (no telling who called), real name otherwise
+        display_name = "IVR Caller" if name.strip().lower() in ("ivr caller", "ivr", "") else name
+        info = {
+            "name": display_name,
+            "mobile": mobile or matched_mobile,
+            "locality": locality,
+            "aadhaar": aadhaar,
+            "report_count": len(history),
+        }
+
+    return jsonify({
+        "success": True,
+        "info": info,
+        "history": history,
+        "count": len(history)
+    })
+
+
 # ================== API DASHBOARD ================== #
 
 @app.route("/api/vet/dashboard_data", methods=["GET"])
 def vet_dashboard_data():
-    # Session check bypassed for MVP
-        
+    # Strict role gate: only a logged-in Veterinarian may read vet data
+    if session.get("role") != "Veterinarian":
+        return jsonify({"success": False, "message": "Veterinarian login required."}), 403
+
     init_excel()
     workbook = load_workbook(EXCEL_FILE)
     

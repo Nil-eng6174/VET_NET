@@ -68,7 +68,25 @@ export const translations = {
     'farmer.addsymp.nasal': 'Nasal Discharge',
     'farmer.addsymp.drooling': 'Drooling',
     
-    'farmer.submit': 'Analyze Disease'
+    'farmer.submit': 'Analyze Disease',
+
+    // Farmer Dashboard
+    'farmer.dashboard.title': 'Farmer Dashboard',
+    'farmer.dashboard.sync': 'SYNC ACTIVE',
+    'farmer.dashboard.locality': 'LOCALITY',
+    'farmer.dashboard.reportCount': 'TOTAL REPORTS',
+    'farmer.dashboard.loading': 'Loading reports...',
+    'farmer.dashboard.error': 'Failed to load reporting history. Is the backend running?',
+    'farmer.dashboard.retry': 'Retry',
+    'farmer.dashboard.history.title': 'REPORTING HISTORY',
+    'farmer.dashboard.history.empty': 'No reports yet. File your first health triage report.',
+    'farmer.dashboard.history.reportNow': 'Report Now',
+    'farmer.dashboard.history.date': 'Date & Time',
+    'farmer.dashboard.history.animal': 'Animal',
+    'farmer.dashboard.history.symptom': 'Symptom',
+    'farmer.dashboard.history.mortality': 'Mortality',
+    'farmer.dashboard.history.risk': 'Risk',
+    'farmer.dashboard.history.recommendation': 'Recommendation'
   },
   mr: {
     // General
@@ -137,7 +155,25 @@ export const translations = {
     'farmer.addsymp.nasal': 'नाकातून स्त्राव',
     'farmer.addsymp.drooling': 'लाळ गळणे',
     
-    'farmer.submit': 'रोगाचे विश्लेषण करा'
+    'farmer.submit': 'रोगाचे विश्लेषण करा',
+
+    // Farmer Dashboard
+    'farmer.dashboard.title': 'शेतकरी डॅशबोर्ड',
+    'farmer.dashboard.sync': 'सिंक सक्रिय',
+    'farmer.dashboard.locality': 'परिसर',
+    'farmer.dashboard.reportCount': 'एकूण अहवाल',
+    'farmer.dashboard.loading': 'अहवाल लोड होत आहेत...',
+    'farmer.dashboard.error': 'अहवाल इतिहास लोड करण्यात अपयश. बॅकएंड चालू आहे का?',
+    'farmer.dashboard.retry': 'पुन्हा प्रयत्न करा',
+    'farmer.dashboard.history.title': 'अहवाल इतिहास',
+    'farmer.dashboard.history.empty': 'अजून अहवाल नाहीत. तुमचा पहिला आरोग्य तपासणी अहवाल सबमिट करा.',
+    'farmer.dashboard.history.reportNow': 'आता अहवाल द्या',
+    'farmer.dashboard.history.date': 'दिनांक आणि वेळ',
+    'farmer.dashboard.history.animal': 'प्राणी',
+    'farmer.dashboard.history.symptom': 'लक्षण',
+    'farmer.dashboard.history.mortality': 'मृत्यू',
+    'farmer.dashboard.history.risk': 'जोखीम',
+    'farmer.dashboard.history.recommendation': 'शिफारस'
   },
   gu: {
     // General
@@ -206,7 +242,25 @@ export const translations = {
     'farmer.addsymp.nasal': 'નાકમાંથી સ્રાવ',
     'farmer.addsymp.drooling': 'લાળ પડવી',
     
-    'farmer.submit': 'રોગનું વિશ્લેષણ કરો'
+    'farmer.submit': 'રોગનું વિશ્લેષણ કરો',
+
+    // Farmer Dashboard
+    'farmer.dashboard.title': 'ખેડૂત ડેશબોર્ડ',
+    'farmer.dashboard.sync': 'સિંક સક્રિય',
+    'farmer.dashboard.locality': 'પરિસર',
+    'farmer.dashboard.reportCount': 'કુલ અહેવાલ',
+    'farmer.dashboard.loading': 'અહેવાલ લોડ થઈ રહ્યા છે...',
+    'farmer.dashboard.error': 'અહેવાલ ઇતિહાસ લોડ કરવામાં નિષ્ફળતા. શું બેકએન્ડ ચાલુ છે?',
+    'farmer.dashboard.retry': 'ફરી પ્રયાસ કરો',
+    'farmer.dashboard.history.title': 'અહેવાલ ઇતિહાસ',
+    'farmer.dashboard.history.empty': 'હજી સુધી કોઈ અહેવાલ નથી. તમારો પ્રથમ આરોગ્ય તપાસ અહેવાલ સબમિટ કરો.',
+    'farmer.dashboard.history.reportNow': 'હવે અહેવાલ આપો',
+    'farmer.dashboard.history.date': 'તારીખ અને સમય',
+    'farmer.dashboard.history.animal': 'પ્રાણી',
+    'farmer.dashboard.history.symptom': 'લક્ષણ',
+    'farmer.dashboard.history.mortality': 'મૃત્યુ',
+    'farmer.dashboard.history.risk': 'જોખમ',
+    'farmer.dashboard.history.recommendation': 'ભલામણ'
   }
 };
 
