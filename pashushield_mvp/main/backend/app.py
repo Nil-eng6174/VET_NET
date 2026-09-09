@@ -663,6 +663,118 @@ def chat():
         print(f"Chat error: {e}")
         return jsonify({"success": False, "message": "Failed to get a response."}), 500
 
+import os
+import json
+import uuid
+from flask import request, jsonify, send_from_directory
+import qrcode
+from datetime import datetime
+
+# Initialize the databases
+VET_CASES_FILE = "vet_cases.json"
+LAB_SAMPLES_FILE = "lab_samples.json"
+QR_CODE_DIR = "uploads/qrcodes"
+
+os.makedirs(QR_CODE_DIR, exist_ok=True)
+
+def read_json(filename):
+    if not os.path.exists(filename):
+        return []
+    with open(filename, 'r') as f:
+        try:
+            return json.load(f)
+        except:
+            return []
+
+def write_json(filename, data):
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
+
+# ================== NEW ENDPOINTS FOR PHASE 1 ================== #
+
+def add_phase1_routes(app):
+
+    @app.route('/uploads/qrcodes/<path:filename>')
+    def serve_qrcode(filename):
+        return send_from_directory(QR_CODE_DIR, filename)
+
+    @app.route('/api/cases/<case_id>/assign', methods=['POST'])
+    def assign_case(case_id):
+        # In MVP, case_id can just be passed from the frontend
+        data = request.json
+        field_worker = data.get('field_worker')
+        
+        cases = read_json(VET_CASES_FILE)
+        # Find if case already tracked
+        case = next((c for c in cases if c['case_id'] == case_id), None)
+        if case:
+            case['assigned_to'] = field_worker
+            case['status'] = 'Assigned'
+        else:
+            cases.append({
+                'case_id': case_id,
+                'assigned_to': field_worker,
+                'status': 'Assigned',
+                'assigned_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            })
+        write_json(VET_CASES_FILE, cases)
+        return jsonify({"success": True, "message": f"Case {case_id} assigned to {field_worker}"})
+
+    @app.route('/api/samples', methods=['POST', 'GET'])
+    def handle_samples():
+        if request.method == 'GET':
+            return jsonify({"success": True, "samples": read_json(LAB_SAMPLES_FILE)})
+        
+        # POST - Request a new sample
+        data = request.json
+        case_id = data.get('case_id')
+        vet_name = data.get('vet_name', 'Vet')
+        
+        samples = read_json(LAB_SAMPLES_FILE)
+        sample_id = f"SMP-{datetime.now().strftime('%Y%m%d')}-{str(uuid.uuid4())[:4].upper()}"
+        
+        # Generate QR Code
+        qr = qrcode.make(sample_id)
+        qr_filename = f"{sample_id}.png"
+        qr.save(os.path.join(QR_CODE_DIR, qr_filename))
+        
+        new_sample = {
+            "sample_id": sample_id,
+            "case_id": case_id,
+            "requested_by": vet_name,
+            "requested_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "status": "In Transit",
+            "qr_code_url": f"/uploads/qrcodes/{qr_filename}",
+            "result": None
+        }
+        samples.append(new_sample)
+        write_json(LAB_SAMPLES_FILE, samples)
+        
+        return jsonify({"success": True, "sample": new_sample})
+
+    @app.route('/api/samples/<sample_id>', methods=['PATCH'])
+    def update_sample(sample_id):
+        data = request.json
+        new_status = data.get('status')
+        result = data.get('result')
+        
+        samples = read_json(LAB_SAMPLES_FILE)
+        sample = next((s for s in samples if s['sample_id'] == sample_id), None)
+        if not sample:
+            return jsonify({"success": False, "message": "Sample not found"}), 404
+            
+        if new_status:
+            sample['status'] = new_status
+        if result:
+            sample['result'] = result
+            sample['status'] = 'Resulted'
+            
+        write_json(LAB_SAMPLES_FILE, samples)
+        return jsonify({"success": True, "sample": sample})
+
+
+add_phase1_routes(app)
+
 if __name__ == "__main__":
     # Binding to 0.0.0.0 allows other devices on the same network to access the app
     app.run(host="0.0.0.0", port=5000, debug=True)

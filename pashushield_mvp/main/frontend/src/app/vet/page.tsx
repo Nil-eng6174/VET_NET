@@ -12,10 +12,42 @@ export default function VetDashboard() {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [isLoading, setIsLoading] = useState(true);
 
+    // Phase 1 MVP states
+    const [selectedCase, setSelectedCase] = useState<any>(null);
+    const [fieldWorker, setFieldWorker] = useState('');
+    const [qrCodeUrl, setQrCodeUrl] = useState('');
+    const [sampleStatus, setSampleStatus] = useState('');
+
     const mapRef = useRef<any>(null);
     const symptomChartRef = useRef<any>(null);
     const histogramChartRef = useRef<any>(null);
     const histogramDataStore = useRef<any>({});
+
+    const handleAssign = async () => {
+        if (!selectedCase || !fieldWorker) return;
+        const caseId = `${selectedCase.name}-${selectedCase.date}`; // Pseudo ID since MVP lacks DB case_id
+        const res = await fetch(`/api/cases/${caseId}/assign`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ field_worker: fieldWorker })
+        });
+        if (res.ok) alert('Assigned successfully to ' + fieldWorker);
+    };
+
+    const handleRequestSample = async () => {
+        if (!selectedCase) return;
+        const caseId = `${selectedCase.name}-${selectedCase.date}`;
+        const res = await fetch('/api/samples', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ case_id: caseId, vet_name: 'District Vet' })
+        });
+        const data = await res.json();
+        if (data.success) {
+            setQrCodeUrl(data.sample.qr_code_url);
+            setSampleStatus('Sample requested successfully. Sample ID: ' + data.sample.sample_id);
+        }
+    };
 
     useEffect(() => {
         const updateTime = () => {
@@ -282,6 +314,7 @@ export default function VetDashboard() {
                                                 <th className="py-4 px-6 whitespace-nowrap">Animal Species</th>
                                                 <th className="py-4 px-6 whitespace-nowrap">Primary Symptom</th>
                                                 <th className="py-4 px-6 whitespace-nowrap text-center">Risk Level</th>
+                                                <th className="py-4 px-6 whitespace-nowrap text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="reportTableBody" className="text-sm text-on-surface">
@@ -297,11 +330,18 @@ export default function VetDashboard() {
                                                             {r.risk}
                                                         </span>
                                                     </td>
+                                                    <td className="py-4 px-6 text-center">
+                                                        <button 
+                                                            onClick={() => setSelectedCase(r)}
+                                                            className="text-primary hover:bg-primary/10 p-2 rounded-full transition-colors">
+                                                            <span className="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             ))}
                                             {reports.length === 0 && (
                                                 <tr>
-                                                    <td colSpan={6} className="py-8 text-center text-text-muted">No recent reports found.</td>
+                                                    <td colSpan={7} className="py-8 text-center text-text-muted">No recent reports found.</td>
                                                 </tr>
                                             )}
                                         </tbody>
@@ -311,6 +351,70 @@ export default function VetDashboard() {
                         </>
                     )}
                 </div>
+
+                {/* Case Management Modal */}
+                {selectedCase && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+                        <div className="bg-surface-panel border border-border-grid rounded-xl w-full max-w-lg p-6 shadow-2xl">
+                            <div className="flex justify-between items-center mb-6">
+                                <h2 className="text-xl font-bold font-title-md text-data-parchment uppercase">Case Management</h2>
+                                <button onClick={() => { setSelectedCase(null); setQrCodeUrl(''); setSampleStatus(''); }} className="text-text-muted hover:text-on-surface">
+                                    <span className="material-symbols-outlined">close</span>
+                                </button>
+                            </div>
+                            
+                            <div className="mb-6 bg-surface-base p-4 rounded border border-border-grid">
+                                <p className="text-sm"><span className="text-text-muted">Farmer:</span> <span className="font-bold">{selectedCase.name}</span></p>
+                                <p className="text-sm"><span className="text-text-muted">Locality:</span> {selectedCase.locality}</p>
+                                <p className="text-sm"><span className="text-text-muted">Animal:</span> {selectedCase.animal} ({selectedCase.symptom})</p>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div>
+                                    <label className="block text-sm font-label-md text-text-muted uppercase mb-2">Assign Field Worker</label>
+                                    <div className="flex gap-2">
+                                        <select 
+                                            className="flex-1 bg-surface-base border border-border-grid rounded px-3 py-2 text-on-surface outline-none focus:border-primary"
+                                            value={fieldWorker}
+                                            onChange={(e) => setFieldWorker(e.target.value)}
+                                        >
+                                            <option value="">Select Worker...</option>
+                                            <option value="FW-01 Rajesh">FW-01 Rajesh</option>
+                                            <option value="FW-02 Suresh">FW-02 Suresh</option>
+                                            <option value="FW-03 Amit">FW-03 Amit</option>
+                                        </select>
+                                        <button 
+                                            onClick={handleAssign}
+                                            className="bg-primary text-on-primary px-4 py-2 rounded font-bold uppercase hover:bg-primary/90 transition-colors">
+                                            Assign
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="border-t border-border-grid pt-6">
+                                    <label className="block text-sm font-label-md text-text-muted uppercase mb-2">Laboratory Diagnostics</label>
+                                    <button 
+                                        onClick={handleRequestSample}
+                                        className="w-full bg-telemetry-saffron text-black px-4 py-2 rounded font-bold uppercase hover:bg-telemetry-saffron/90 transition-colors flex items-center justify-center gap-2">
+                                        <span className="material-symbols-outlined">science</span> Request Lab Sample
+                                    </button>
+                                </div>
+
+                                {sampleStatus && (
+                                    <div className="mt-4 text-center">
+                                        <p className="text-sm text-radar-emerald font-bold mb-2">{sampleStatus}</p>
+                                        {qrCodeUrl && (
+                                            <div className="flex flex-col items-center gap-2 mt-4 bg-white p-4 rounded-xl border-4 border-radar-emerald inline-block">
+                                                <img src={`http://127.0.0.1:5000${qrCodeUrl}`} alt="QR Code" className="w-48 h-48" />
+                                                <p className="text-xs text-black font-bold uppercase tracking-widest">Scan for Custody</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </main>
         </div>
     );
