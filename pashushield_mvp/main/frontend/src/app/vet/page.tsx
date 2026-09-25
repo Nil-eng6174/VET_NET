@@ -448,8 +448,6 @@ export default function VetDashboard() {
                         </div>
                     </div>
                 )}
-                </div>
-                )}
 
                 {activeTab === 'herd' && (
                 <div className="max-w-[1400px] mx-auto flex flex-col gap-6 animate-in fade-in zoom-in duration-300">
