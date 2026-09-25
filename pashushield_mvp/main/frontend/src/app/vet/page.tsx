@@ -11,6 +11,7 @@ export default function VetDashboard() {
     const [districts, setDistricts] = useState<string[]>([]);
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState<'command' | 'herd' | 'team'>('command');
 
     // Phase 1 MVP states
     const [selectedCase, setSelectedCase] = useState<any>(null);
