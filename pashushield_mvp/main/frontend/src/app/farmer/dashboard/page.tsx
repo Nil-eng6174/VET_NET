@@ -218,7 +218,16 @@ export default function FarmerDashboard() {
                                                         {report.risk_score ? ` • ${report.risk_score}%` : ''}
                                                     </span>
                                                 </td>
-                                                <td className="px-4 py-4 font-body-sm text-text-muted max-w-[280px]">{report.recommendation || '—'}</td>
+                                                <td className="px-4 py-4 font-body-sm text-text-muted">
+                                                    {report.recommendation ? (
+                                                        <button 
+                                                            onClick={() => setViewRec(report.recommendation)}
+                                                            className="px-3 py-1.5 bg-surface-container-high rounded border border-border-grid text-primary hover:bg-surface-panel-active font-bold text-xs whitespace-nowrap shadow-sm"
+                                                        >
+                                                            View Advice
+                                                        </button>
+                                                    ) : '—'}
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>

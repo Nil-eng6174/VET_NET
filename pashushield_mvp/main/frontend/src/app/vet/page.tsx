@@ -86,8 +86,10 @@ export default function VetDashboard() {
                     }
 
                     // Render Map
+                    const mapEl = document.getElementById('map');
+                    if (!mapEl) return;
                     if (!mapRef.current) {
-                        mapRef.current = L.map('map').setView([18.5204, 73.8567], 7);
+                        mapRef.current = L.map(mapEl).setView([18.5204, 73.8567], 7);
                         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             attribution: '© OpenStreetMap contributors'
                         }).addTo(mapRef.current);

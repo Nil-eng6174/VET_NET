@@ -261,8 +261,8 @@ export default function FarmerDashboard() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="flex flex-col gap-2">
                                     <label className="font-title-md text-on-surface">{t('farmer.form.animalType')}</label>
-                                    <select name="animal" className="rounded-lg border border-border-grid bg-surface-base py-3 px-4 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-lg outline-none" required>
-                                        <option disabled selected value="">{t('farmer.form.selectAnimal')}</option>
+                                    <select name="animal" defaultValue="" className="rounded-lg border border-border-grid bg-surface-base py-3 px-4 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-lg outline-none" required>
+                                        <option disabled value="">{t('farmer.form.selectAnimal')}</option>
                                         <option value="cow">{t('farmer.species.cattle')}</option>
                                         <option value="buffalo">{t('farmer.species.buffalo')}</option>
                                         <option value="goat">{t('farmer.species.goat')}</option>
@@ -271,8 +271,8 @@ export default function FarmerDashboard() {
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label className="font-title-md text-on-surface">{t('farmer.form.mainSymptom')}</label>
-                                    <select name="symptom" className="rounded-lg border border-border-grid bg-surface-base py-3 px-4 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-lg outline-none" required>
-                                        <option disabled selected value="">{t('farmer.form.selectSymptom')}</option>
+                                    <select name="symptom" defaultValue="" className="rounded-lg border border-border-grid bg-surface-base py-3 px-4 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-lg outline-none" required>
+                                        <option disabled value="">{t('farmer.form.selectSymptom')}</option>
                                         <option value="fever">{t('farmer.symp.fever')}</option>
                                         <option value="diarrhea">{t('farmer.symp.diarrhea')}</option>
                                         <option value="reduced-milk">{t('farmer.symp.milk')}</option>
@@ -335,8 +335,8 @@ export default function FarmerDashboard() {
                                 </label>
                             </div>
 
-                            <input type="hidden" name="lat" value={location.split('°')[0]} />
-                            <input type="hidden" name="lng" value={location.split(' ')[2]?.replace('°', '')} />
+                            <input type="hidden" name="lat" value={location.split('°')[0] || ""} />
+                            <input type="hidden" name="lng" value={location.split(' ')[2]?.replace('°', '') || ""} />
 
                             <div className="mt-4">
                                 <button disabled={isSubmitting} className="w-full bg-primary text-white text-lg font-title-md py-4 rounded-xl hover:bg-primary-container transition-colors flex items-center justify-center gap-3 shadow-lg disabled:opacity-75 disabled:cursor-not-allowed" type="submit">
