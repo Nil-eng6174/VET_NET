@@ -14,7 +14,8 @@ export default function Home() {
 
     const handleLogin = async (e: any) => {
         e.preventDefault();
-        const form = e.currentTarget;
+        const form = e.currentTarget.closest('form');
+        if (!form) return;
         const aadhaar = (form.querySelector('input[name="aadhaar"]') as HTMLInputElement)?.value?.trim();
         const selectedRole = (form.querySelector('select[name="role"]') as HTMLSelectElement)?.value || role;
 
@@ -175,7 +176,11 @@ export default function Home() {
                                         {loginError && (
                                             <p className="text-sm text-red-500 -mt-3 font-medium">{loginError}</p>
                                         )}
-                                        <button className="w-full bg-primary hover:bg-telemetry-saffron text-on-primary font-title-md py-4 rounded-xl mt-2 transition-colors flex items-center justify-center gap-2 shadow-sm font-bold text-lg" type="submit">
+                                        <button 
+                                            onClick={(e) => handleLogin(e)}
+                                            className="w-full bg-primary hover:bg-telemetry-saffron text-on-primary font-title-md py-4 rounded-xl mt-2 transition-colors flex items-center justify-center gap-2 shadow-sm font-bold text-lg" 
+                                            type="button"
+                                        >
                                             {t('login.button')} <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                                         </button>
                                         <div className="text-center mt-2">
@@ -227,7 +232,29 @@ export default function Home() {
                                                 {['Pune','Solapur','Satara','Kolhapur','Sangli','Ahmednagar','Nashik','Raigad','Ratnagiri','Sindhudurg'].map(d => <option key={d} value={d}>{d}</option>)}
                                             </select>
                                         </div>
-                                        <button className="w-full bg-primary hover:bg-telemetry-saffron text-on-primary font-title-md py-4 rounded-xl mt-1 transition-colors flex items-center justify-center gap-2 shadow-sm font-bold text-lg" type="submit">
+                                        <button 
+                                            className="w-full bg-primary hover:bg-telemetry-saffron text-on-primary font-title-md py-4 rounded-xl mt-1 transition-colors flex items-center justify-center gap-2 shadow-sm font-bold text-lg" 
+                                            type="button"
+                                            onClick={async (e) => {
+                                                e.preventDefault();
+                                                if (!registerFormRef.current?.checkValidity()) {
+                                                    registerFormRef.current?.reportValidity();
+                                                    return;
+                                                }
+                                                const fd = new FormData(registerFormRef.current!);
+                                                const payload = {
+                                                    role: (fd.get('role') as string),
+                                                    name: (fd.get('name') as string),
+                                                    aadhaar: (fd.get('aadhaar') as string),
+                                                    mobile: (fd.get('mobile') as string),
+                                                    locality: (fd.get('locality') as string),
+                                                };
+                                                const res = await fetch('/api/register', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+                                                const data = await res.json();
+                                                if (data.success) { alert('Registration successful! Please login.'); setView('login'); }
+                                                else { alert(data.message || 'Registration failed.'); }
+                                            }}
+                                        >
                                             Register Now <span className="material-symbols-outlined text-[20px]">how_to_reg</span>
                                         </button>
                                         <div className="text-center mt-1">

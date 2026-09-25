@@ -16,7 +16,9 @@ const nextConfig: NextConfig = {
         destination: 'http://127.0.0.1:5000/uploads/:path*',
       }
     ]
-  }
+  },
+  // @ts-ignore - Bypass Next.js strict local origin checks for mobile testing
+  allowedDevOrigins: ['*']
 };
 
 export default nextConfig;
