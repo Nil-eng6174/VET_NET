@@ -49,6 +49,12 @@ export default function VetDashboard() {
         }
     };
 
+    const focusOnMap = (lat: any, lng: any) => {
+        if (!lat || !lng || !mapRef.current) return;
+        mapRef.current.flyTo([parseFloat(lat), parseFloat(lng)], 14);
+        document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     useEffect(() => {
         const updateTime = () => {
             const now = new Date();
@@ -187,7 +193,7 @@ export default function VetDashboard() {
             <header className="fixed top-0 inset-x-0 z-50 bg-surface-panel/95 backdrop-blur-md border-b border-border-grid">
                 <div className="h-16 w-full px-4 md:px-6 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-4 shrink-0">
-                        <img alt="PashuShield Official Logo" className="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XLDFrDglF2n3r1uftl6goq7UaqNywM2Y8F1AiGpEF9f2yjmaeRYSn6PlDywK2f9wJ1UUksm88RBO2IVnE0Ww_w3t1JskqMyVGZCs4ChjZiCwmC0Zv6qG8IENUxijWZ3KJXLy6oS21lwJg1Bi3e7vYCnNIWDJ96uf5OVMlXqGR4YTnqu595XvzdXTj-U_OT2TihUn11A2hBufR-4lKiCjQHOPqDL75oLHa3ZzgdWwWO4m0_jvF6QCL-MM4"/>
+                        <span className="material-symbols-outlined text-[32px] text-telemetry-saffron">shield</span>
                         <div className="flex flex-col">
                             <div className="flex items-center gap-2">
                                 <span className="font-headline-sm text-data-parchment font-bold uppercase tracking-wider">PashuShield</span>
@@ -333,7 +339,13 @@ export default function VetDashboard() {
                                             {reports.map((r, idx) => (
                                                 <tr key={idx} className={`border-b border-border-grid hover:bg-surface-container-high transition-colors ${idx % 2 === 0 ? 'bg-surface-panel' : 'bg-surface-panel-active'}`}>
                                                     <td className="py-4 px-6 font-telemetry-num text-text-muted">{r.date}</td>
-                                                    <td className="py-4 px-6 font-bold text-data-parchment">{r.name}</td>
+                                                    <td 
+                                                        className="py-4 px-6 font-bold text-data-parchment cursor-pointer hover:text-telemetry-saffron underline decoration-dashed underline-offset-4" 
+                                                        onClick={() => focusOnMap(r.lat, r.lng)}
+                                                        title="Locate on Map"
+                                                    >
+                                                        {r.name}
+                                                    </td>
                                                     <td className="py-4 px-6 text-on-surface-variant">{r.locality}</td>
                                                     <td className="py-4 px-6 capitalize">{r.animal}</td>
                                                     <td className="py-4 px-6 capitalize font-medium">{r.symptom}</td>
@@ -417,7 +429,7 @@ export default function VetDashboard() {
                                         <p className="text-sm text-radar-emerald font-bold mb-2">{sampleStatus}</p>
                                         {qrCodeUrl && (
                                             <div className="flex flex-col items-center gap-2 mt-4 bg-white p-4 rounded-xl border-4 border-radar-emerald inline-block">
-                                                <img src={`http://127.0.0.1:5000${qrCodeUrl}`} alt="QR Code" className="w-48 h-48" />
+                                                <img src={qrCodeUrl} alt="QR Code" className="w-48 h-48" />
                                                 <p className="text-xs text-black font-bold uppercase tracking-widest">Scan for Custody</p>
                                             </div>
                                         )}

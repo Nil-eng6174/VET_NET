@@ -120,7 +120,7 @@ export default function LabDashboard() {
                                                             Enter Result
                                                         </button>
                                                     )}
-                                                    <a href={`http://127.0.0.1:5000${s.qr_code_url}`} target="_blank" rel="noopener noreferrer" className="bg-gray-200 text-gray-700 text-xs px-3 py-1.5 rounded hover:bg-gray-300 shadow-sm transition-colors flex items-center">
+                                                    <a href={s.qr_code_url} target="_blank" rel="noopener noreferrer" className="bg-gray-200 text-gray-700 text-xs px-3 py-1.5 rounded hover:bg-gray-300 shadow-sm transition-colors flex items-center">
                                                         QR
                                                     </a>
                                                 </td>

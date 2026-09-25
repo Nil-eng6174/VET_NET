@@ -96,3 +96,7 @@ body {
   letter-spacing: 0.2em;
   font-family: monospace;
 }
+
+button, input, select, a {
+  touch-action: manipulation;
+}
