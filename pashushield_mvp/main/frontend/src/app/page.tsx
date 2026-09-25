@@ -54,7 +54,7 @@ export default function Home() {
         if (role === 'Farmer') {
             router.push(destination === 'report' ? '/farmer' : '/farmer/dashboard');
         } else {
-            router.push(destination === 'report' ? '/vet/reports' : '/vet');
+            router.push('/vet');
         }
     };
 
@@ -63,11 +63,7 @@ export default function Home() {
             {/* Header */}
             <header className="fixed top-0 inset-x-0 z-50 bg-surface-panel/90 backdrop-blur-xl shadow-sm h-16 px-4 md:px-6 flex items-center justify-between border-b border-border-grid">
                 <div className="flex items-center gap-2">
-                    <img 
-                      alt="PashuShield"
-                      src="https://lh3.googleusercontent.com/aida/AEtjO1XLDFrDglF2n3r1uftl6goq7UaqNywM2Y8F1AiGpEF9f2yjmaeRYSn6PlDywK2f9wJ1UUksm88RBO2IVnE0Ww_w3t1JskqMyVGZCs4ChjZiCwmC0Zv6qG8IENUxijWZ3KJXLy6oS21lwJg1Bi3e7vYCnNIWDJ96uf5OVMlXqGR4YTnqu595XvzdXTj-U_OT2TihUn11A2hBufR-4lKiCjQHOPqDL75oLHa3ZzgdWwWO4m0_jvF6QCL-MM4" 
-                      className="h-8 w-auto object-contain flex-shrink-0"
-                    />
+                    <span className="material-symbols-outlined text-[32px] text-telemetry-saffron flex-shrink-0">shield</span>
                     <div className="flex flex-col min-w-0">
                         <div className="flex items-center gap-1.5">
                             <span className="font-title-lg text-data-parchment tracking-tight truncate">{t('app.title')}</span>
