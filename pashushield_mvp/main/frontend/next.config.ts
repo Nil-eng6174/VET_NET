@@ -17,8 +17,12 @@ const nextConfig: NextConfig = {
       }
     ]
   },
-  // @ts-ignore - Bypass Next.js strict local origin checks for mobile testing
-  allowedDevOrigins: ['*']
+  // @ts-ignore
+  allowedDevOrigins: [
+    'localhost',
+    '127.0.0.1',
+    '10.91.194.225'
+  ]
 };
 
 export default nextConfig;
