@@ -444,7 +444,6 @@ def farmer_history():
 
 # ================== API DASHBOARD ================== #
 
-
 import math
 def haversine(lat1, lon1, lat2, lon2):
     R = 6371.0 # Earth radius in kilometers
@@ -582,4 +581,266 @@ def vet_dashboard_data():
         "histogram_data": histogram_data,
         "clusters": clusters
     })
+
+
+
+# ================== FARMER SUBMISSION ================== #
+
+@app.route("/submit", methods=["POST"])
+def submit():
+    # Session check bypassed for MVP
+        
+    try:
+        # Priority: form fields (from Next.js localStorage pass-through) > Flask session > blank
+        username = request.form.get("farmer_name", "").strip() or session.get("name", "")
+        mobile   = request.form.get("farmer_mobile", "").strip() or session.get("mobile", "")
+        locality = request.form.get("farmer_locality", "").strip() or session.get("locality", "Pune")
+        aadhaar  = request.form.get("farmer_aadhaar", "").strip() or session.get("aadhaar", "")
+        password = "AUTH_VIA_OTP"
+
+        animal = request.form.get("animal", "").strip()
+        numAnimals = request.form.get("numAnimals", "1").strip()
+        numMortality = request.form.get("numMortality", "0").strip()
+        symptom = request.form.get("symptom", "").strip()
+        additional_symptoms = request.form.get("additionalSymptoms", "").strip()
+        duration = request.form.get("duration", "").strip()
+        notes = request.form.get('notes', '').strip()
+        language = request.form.get('language', 'en').strip()
+        lat = request.form.get("lat", "")
+        lng = request.form.get("lng", "")
+
+        image = request.files.get("image")
+        image_name = ""
+
+        if image and image.filename:
+            safe_name = secure_filename(image.filename)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            image_name = f"{timestamp}_{safe_name}" if safe_name else f"{timestamp}_image.jpg"
+            image.save(os.path.join(UPLOAD_FOLDER, image_name))
+
+        image_path = os.path.join(UPLOAD_FOLDER, image_name) if image_name else None
+        
+        try:
+            score, risk_level, reasons, image_desc = calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality=numMortality, image_path=image_path, notes=notes)
+        except ValueError as ve:
+            if str(ve) == "NOT_LIVESTOCK":
+                return jsonify({
+                    "status": "error",
+                    "message": "The uploaded image does not appear to be an animal or livestock. Please upload a valid image."
+                }), 400
+            else:
+                raise ve
+
+        recommendation = get_recommendation(risk_level, symptom, additional_symptoms, notes, image_desc, language=language)
+
+        init_excel()
+        workbook = load_workbook(EXCEL_FILE)
+        sheet = workbook["Farmer Reports"]
+
+        sheet.append([
+            username, mobile, password, locality, animal, numAnimals, numMortality, symptom,
+            additional_symptoms, duration, notes, image_name,
+            score, risk_level, recommendation,
+            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            aadhaar, lat, lng
+        ])
+        workbook.save(EXCEL_FILE)
+        
+        # --- OUTBREAK LOGIC TRIGGER ---
+        check_outbreak_threshold(locality, animal, symptom)
+
+        sms_sent = False
+        sms_info = ""
+        
+        # --- SEND EMAIL AND SMS (PROTOTYPE) ---
+        target_email = os.getenv("SMTP_EMAIL", "gaurang.gobe_comp25@pccoer.in")
+        sender_password = os.getenv("SMTP_PASSWORD", "")
+        
+        email_sent = False
+        if sender_password:
+            try:
+                msg = EmailMessage()
+                msg.set_content(
+                    f"KrishiCare Animal Health Alert\n\n"
+                    f"Risk Score: {score}%\n"
+                    f"Risk Level: {risk_level}\n\n"
+                    f"Advice:\n{recommendation}\n\n"
+                    f"Consult a veterinarian for diagnosis."
+                )
+                msg["Subject"] = f"KrishiCare AI Report: {animal.capitalize()} ({risk_level} RISK)"
+                msg["From"] = target_email
+                msg["To"] = target_email
+                
+                server = smtplib.SMTP("smtp.gmail.com", 587)
+                server.starttls()
+                server.login(target_email, sender_password)
+                server.send_message(msg)
+                server.quit()
+                email_sent = True
+            except Exception as e:
+                print(f"Email failed: {str(e)}")
+
+        # Send WhatsApp SMS
+        if mobile:
+            w_sent, w_info = send_textbee_sms(mobile, score, risk_level, recommendation)
+            sms_sent = w_sent
+            sms_info = w_info
+        else:
+            sms_info = "No mobile number provided."
+
+        if email_sent:
+            sms_info += " (Email also sent to farmer)"
+
+        return jsonify({
+            "status": "success",
+            "message": "Report saved successfully!",
+            "score": score,
+            "risk_level": risk_level,
+            "reasons": reasons,
+            "recommendation": recommendation,
+            "sms_sent": sms_sent,
+            "sms_info": sms_info
+        }), 200
+
+    except Exception as e:
+        print(f"Error in submit endpoint: {e}")
+        return jsonify({
+            "status": "error",
+            "message": f"Server error: {str(e)}"
+        }), 500
+
+
+@app.route("/api/chat", methods=["POST"])
+def chat():
+    data = request.json
+    query = data.get('message', '')
+    language = data.get('language', 'en')
+    if not query:
+        return jsonify({"success": False, "message": "Message is required."})
+    
+    try:
+        from chatbot import get_chat_response
+        response = get_chat_response(query, language=language)
+        return jsonify({"success": True, "reply": response})
+    except Exception as e:
+        print(f"Chat error: {e}")
+        return jsonify({"success": False, "message": "Failed to get a response."}), 500
+
+import os
+import json
+import uuid
+from flask import request, jsonify, send_from_directory
+import qrcode
+from datetime import datetime
+
+# Initialize the databases
+VET_CASES_FILE = "vet_cases.json"
+LAB_SAMPLES_FILE = "lab_samples.json"
+QR_CODE_DIR = "uploads/qrcodes"
+
+os.makedirs(QR_CODE_DIR, exist_ok=True)
+
+def read_json(filename):
+    if not os.path.exists(filename):
+        return []
+    with open(filename, 'r') as f:
+        try:
+            return json.load(f)
+        except:
+            return []
+
+def write_json(filename, data):
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
+
+# ================== NEW ENDPOINTS FOR PHASE 1 ================== #
+
+def add_phase1_routes(app):
+
+    @app.route('/uploads/qrcodes/<path:filename>')
+    def serve_qrcode(filename):
+        return send_from_directory(QR_CODE_DIR, filename)
+
+    @app.route('/api/cases/<case_id>/assign', methods=['POST'])
+    def assign_case(case_id):
+        # In MVP, case_id can just be passed from the frontend
+        data = request.json
+        field_worker = data.get('field_worker')
+        
+        cases = read_json(VET_CASES_FILE)
+        # Find if case already tracked
+        case = next((c for c in cases if c['case_id'] == case_id), None)
+        if case:
+            case['assigned_to'] = field_worker
+            case['status'] = 'Assigned'
+        else:
+            cases.append({
+                'case_id': case_id,
+                'assigned_to': field_worker,
+                'status': 'Assigned',
+                'assigned_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            })
+        write_json(VET_CASES_FILE, cases)
+        return jsonify({"success": True, "message": f"Case {case_id} assigned to {field_worker}"})
+
+    @app.route('/api/samples', methods=['POST', 'GET'])
+    def handle_samples():
+        if request.method == 'GET':
+            return jsonify({"success": True, "samples": read_json(LAB_SAMPLES_FILE)})
+        
+        # POST - Request a new sample
+        data = request.json
+        case_id = data.get('case_id')
+        vet_name = data.get('vet_name', 'Vet')
+        
+        samples = read_json(LAB_SAMPLES_FILE)
+        sample_id = f"SMP-{datetime.now().strftime('%Y%m%d')}-{str(uuid.uuid4())[:4].upper()}"
+        
+        # Generate QR Code
+        qr = qrcode.make(sample_id)
+        qr_filename = f"{sample_id}.png"
+        qr.save(os.path.join(QR_CODE_DIR, qr_filename))
+        
+        new_sample = {
+            "sample_id": sample_id,
+            "case_id": case_id,
+            "requested_by": vet_name,
+            "requested_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "status": "In Transit",
+            "qr_code_url": f"/uploads/qrcodes/{qr_filename}",
+            "result": None
+        }
+        samples.append(new_sample)
+        write_json(LAB_SAMPLES_FILE, samples)
+        
+        return jsonify({"success": True, "sample": new_sample})
+
+    @app.route('/api/samples/<sample_id>', methods=['PATCH'])
+    def update_sample(sample_id):
+        data = request.json
+        new_status = data.get('status')
+        result = data.get('result')
+        
+        samples = read_json(LAB_SAMPLES_FILE)
+        sample = next((s for s in samples if s['sample_id'] == sample_id), None)
+        if not sample:
+            return jsonify({"success": False, "message": "Sample not found"}), 404
+            
+        if new_status:
+            sample['status'] = new_status
+        if result:
+            sample['result'] = result
+            sample['status'] = 'Resulted'
+            
+        write_json(LAB_SAMPLES_FILE, samples)
+        return jsonify({"success": True, "sample": sample})
+
+
+add_phase1_routes(app)
+
+if __name__ == "__main__":
+    # Binding to 0.0.0.0 allows other devices on the same network to access the app
+    app.run(host="0.0.0.0", port=5000, debug=True)
+
+
 
