@@ -55,6 +55,7 @@ export default function FarmerDashboard() {
     const [info, setInfo] = useState<FarmerInfo | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [viewRec, setViewRec] = useState<string | null>(null);
 
     useEffect(() => {
         if (!farmer.aadhaar && !farmer.mobile) return;
@@ -228,6 +229,27 @@ export default function FarmerDashboard() {
 
                 </div>
             </main>
+
+            {/* Recommendation Modal */}
+            {viewRec && (
+                <div className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center p-4 animate-in fade-in">
+                    <div className="bg-surface-panel rounded-xl max-w-lg w-full p-6 shadow-xl flex flex-col max-h-[90vh]">
+                        <h3 className="font-title-lg text-primary mb-4 font-bold flex items-center gap-2">
+                            <span className="material-symbols-outlined">prescriptions</span>
+                            AI Recommendation
+                        </h3>
+                        <div className="flex-1 overflow-y-auto pr-2 mb-4 whitespace-pre-wrap font-body-md text-on-surface bg-surface-base p-4 rounded-lg border border-border-grid">
+                            {viewRec}
+                        </div>
+                        <button 
+                            onClick={() => setViewRec(null)} 
+                            className="w-full bg-primary hover:bg-telemetry-saffron transition-colors text-on-primary py-3 rounded-lg font-bold shadow-md"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

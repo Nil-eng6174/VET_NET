@@ -108,10 +108,10 @@ export default function FarmerDashboard() {
         <div className="bg-surface-base text-on-surface font-body-md flex flex-col min-h-screen">
             {/* Tactical Header */}
             <header className="fixed top-0 inset-x-0 z-50 bg-surface-panel/90 backdrop-blur-xl pt-safe shadow-sm border-b border-border-grid">
-                <div className="h-auto min-h-20 flex flex-col justify-center px-3 py-2 md:px-6">
-                    <div className="flex items-center justify-between gap-4">
+                <div className="h-auto min-h-16 flex flex-col justify-center px-3 py-2 md:px-6">
+                    <div className="flex flex-wrap items-center justify-between gap-2 md:gap-4">
                         <div className="flex items-center gap-4 min-w-0">
-                            <span className="material-symbols-outlined text-[32px] text-telemetry-saffron flex-shrink-0">shield</span>
+                            <span className="material-symbols-outlined text-[28px] md:text-[32px] text-telemetry-saffron flex-shrink-0 text-[28px] md:text-[32px]">shield</span>
                             <div className="flex flex-col min-w-0">
                                 <div className="flex items-center gap-2">
                                     <span className="font-title-lg text-data-parchment tracking-tight text-xl">{t('app.title')}</span>
@@ -125,10 +125,10 @@ export default function FarmerDashboard() {
                                 <span className="w-2 h-2 rounded-full bg-radar-emerald animate-pulse"></span>
                                 <span>SYNC ACTIVE</span>
                             </div>
-                            <div className="flex items-center bg-surface-container-high rounded-lg p-1 shadow-sm">
-                                <button className={`px-3 py-1.5 rounded-md text-sm font-bold ${language === 'en' ? 'bg-primary text-on-primary shadow' : 'text-text-muted hover:text-on-surface'}`} onClick={() => setLanguage('en')}>EN</button>
-                                <button className={`px-3 py-1.5 rounded-md text-sm font-bold ${language === 'mr' ? 'bg-primary text-on-primary shadow' : 'text-text-muted hover:text-on-surface'}`} onClick={() => setLanguage('mr')}>मराठी</button>
-                                <button className={`px-3 py-1.5 rounded-md text-sm font-bold ${language === 'gu' ? 'bg-primary text-on-primary shadow' : 'text-text-muted hover:text-on-surface'}`} onClick={() => setLanguage('gu')}>ગુજરાતી</button>
+                            <div className="flex items-center bg-surface-container-high rounded p-1 text-xs shadow-sm">
+                                <button className={`px-2 py-1 rounded text-xs font-bold ${language === 'en' ? 'bg-primary text-on-primary shadow' : 'text-text-muted hover:text-on-surface'}`} onClick={() => setLanguage('en')}>EN</button>
+                                <button className={`px-2 py-1 rounded text-xs font-bold ${language === 'mr' ? 'bg-primary text-on-primary shadow' : 'text-text-muted hover:text-on-surface'}`} onClick={() => setLanguage('mr')}>मराठी</button>
+                                <button className={`px-2 py-1 rounded text-xs font-bold ${language === 'gu' ? 'bg-primary text-on-primary shadow' : 'text-text-muted hover:text-on-surface'}`} onClick={() => setLanguage('gu')}>ગુજરાતી</button>
                             </div>
                             <button onClick={() => router.push('/')} className="text-text-muted hover:text-on-surface p-2 ml-2 bg-surface-container-high rounded-full hover:bg-border-grid transition-colors">
                                 <span className="material-symbols-outlined text-[24px]">logout</span>
@@ -143,7 +143,7 @@ export default function FarmerDashboard() {
                     
                     {/* PWA Network & Quick Status Banner */}
                     <div className="flex flex-col w-full bg-surface-panel px-6 py-4 rounded-xl shadow-sm border border-border-grid mb-6">
-                        <div className="flex items-center justify-between gap-4">
+                        <div className="flex flex-wrap items-center justify-between gap-2 md:gap-4">
                             <div className="flex items-center gap-3 min-w-0">
                                 <span className="w-3 h-3 rounded-full bg-radar-emerald animate-pulse flex-shrink-0 shadow-[0_0_8px_rgba(5,150,105,0.6)]"></span>
                                 <span className="font-title-md text-radar-emerald truncate">{t('farmer.status.online')}</span>
