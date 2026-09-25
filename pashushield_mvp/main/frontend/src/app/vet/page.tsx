@@ -253,10 +253,16 @@ export default function VetDashboard() {
                         <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-telemetry-amber"></span> SUSPECTED CLUSTERS</span>
                     </div>
                 </div>
+                <div className="flex overflow-x-auto border-t border-border-grid bg-surface-base px-2 md:px-6 hide-scrollbar">
+                    <button onClick={() => setActiveTab('command')} className={`shrink-0 px-4 py-3 font-title-md uppercase tracking-wide border-b-2 transition-colors ${activeTab === 'command' ? 'border-primary text-primary font-bold' : 'border-transparent text-text-muted hover:text-on-surface'}`}>Command Center</button>
+                    <button onClick={() => setActiveTab('herd')} className={`shrink-0 px-4 py-3 font-title-md uppercase tracking-wide border-b-2 transition-colors ${activeTab === 'herd' ? 'border-primary text-primary font-bold' : 'border-transparent text-text-muted hover:text-on-surface'}`}>Herd & Vaccine Mgt</button>
+                    <button onClick={() => setActiveTab('team')} className={`shrink-0 px-4 py-3 font-title-md uppercase tracking-wide border-b-2 transition-colors ${activeTab === 'team' ? 'border-primary text-primary font-bold' : 'border-transparent text-text-muted hover:text-on-surface'}`}>Field Team</button>
+                </div>
             </header>
 
-            <main className="flex-grow pt-[104px] p-4 md:p-6 overflow-y-auto">
-                <div className="max-w-[1400px] mx-auto flex flex-col gap-6">
+            <main className="flex-grow pt-[150px] p-4 md:p-6 overflow-y-auto">
+                {activeTab === 'command' && (
+                <div className="max-w-[1400px] mx-auto flex flex-col gap-6 animate-in fade-in zoom-in duration-300">
                     
                     {alerts.length > 0 && (
                         <div className="flex flex-col gap-2">
@@ -441,6 +447,170 @@ export default function VetDashboard() {
                         </div>
                     </div>
                 )}
+                </div>
+                )}
+
+                {activeTab === 'herd' && (
+                <div className="max-w-[1400px] mx-auto flex flex-col gap-6 animate-in fade-in zoom-in duration-300">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <h2 className="text-2xl font-bold font-title-lg text-primary">Herd Health & Vaccination Coverage</h2>
+                        <button className="bg-primary text-on-primary px-4 py-2 rounded-lg font-bold shadow-sm hover:bg-telemetry-saffron transition-colors flex items-center gap-2">
+                            <span className="material-symbols-outlined">vaccines</span> Schedule Vaccination Drive
+                        </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-surface-panel border border-border-grid rounded-xl p-6 shadow-sm">
+                            <span className="text-text-muted font-label-sm uppercase">Total Villages Covered</span>
+                            <div className="text-3xl font-bold text-on-surface mt-2">12 / 15</div>
+                            <span className="text-radar-emerald font-label-sm mt-1 inline-block">+2 this month</span>
+                        </div>
+                        <div className="bg-surface-panel border border-border-grid rounded-xl p-6 shadow-sm">
+                            <span className="text-text-muted font-label-sm uppercase">LSD Vaccination Rate</span>
+                            <div className="text-3xl font-bold text-on-surface mt-2">84%</div>
+                            <div className="w-full bg-surface-base h-2 rounded-full mt-3 overflow-hidden">
+                                <div className="bg-primary h-full rounded-full" style={{width: '84%'}}></div>
+                            </div>
+                        </div>
+                        <div className="bg-surface-panel border border-border-grid rounded-xl p-6 shadow-sm">
+                            <span className="text-text-muted font-label-sm uppercase">FMD Vaccination Rate</span>
+                            <div className="text-3xl font-bold text-on-surface mt-2">91%</div>
+                            <div className="w-full bg-surface-base h-2 rounded-full mt-3 overflow-hidden">
+                                <div className="bg-radar-emerald h-full rounded-full" style={{width: '91%'}}></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-surface-panel border border-border-grid rounded-xl overflow-hidden shadow-sm">
+                        <div className="p-4 border-b border-border-grid bg-surface-panel-active">
+                            <h3 className="font-bold font-title-md text-on-surface">Village-level Herd Status</h3>
+                        </div>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left">
+                                <thead className="bg-surface-base border-b border-border-grid">
+                                    <tr>
+                                        <th className="px-6 py-4 font-label-sm text-text-muted uppercase">Village / Locality</th>
+                                        <th className="px-6 py-4 font-label-sm text-text-muted uppercase">Registered Herds</th>
+                                        <th className="px-6 py-4 font-label-sm text-text-muted uppercase">Total Cattle</th>
+                                        <th className="px-6 py-4 font-label-sm text-text-muted uppercase">LSD Status</th>
+                                        <th className="px-6 py-4 font-label-sm text-text-muted uppercase">FMD Status</th>
+                                        <th className="px-6 py-4 font-label-sm text-text-muted uppercase">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-border-grid hover:bg-surface-panel-active/50 transition-colors">
+                                        <td className="px-6 py-4 font-bold text-on-surface">Kolhapur (North)</td>
+                                        <td className="px-6 py-4 text-text-muted">45</td>
+                                        <td className="px-6 py-4 text-text-muted">1,240</td>
+                                        <td className="px-6 py-4"><span className="px-2 py-1 bg-radar-emerald/20 text-radar-emerald text-xs font-bold rounded">95% (SAFE)</span></td>
+                                        <td className="px-6 py-4"><span className="px-2 py-1 bg-radar-emerald/20 text-radar-emerald text-xs font-bold rounded">98% (SAFE)</span></td>
+                                        <td className="px-6 py-4"><button className="text-primary font-bold text-sm hover:underline">View Log</button></td>
+                                    </tr>
+                                    <tr className="border-b border-border-grid hover:bg-surface-panel-active/50 transition-colors">
+                                        <td className="px-6 py-4 font-bold text-on-surface">Pune (Shirur)</td>
+                                        <td className="px-6 py-4 text-text-muted">12</td>
+                                        <td className="px-6 py-4 text-text-muted">380</td>
+                                        <td className="px-6 py-4"><span className="px-2 py-1 bg-threat-crimson/20 text-threat-crimson text-xs font-bold rounded">42% (RISK)</span></td>
+                                        <td className="px-6 py-4"><span className="px-2 py-1 bg-telemetry-amber/20 text-telemetry-amber text-xs font-bold rounded">76% (WARN)</span></td>
+                                        <td className="px-6 py-4"><button className="text-threat-crimson font-bold text-sm border border-threat-crimson/30 px-3 py-1 rounded bg-threat-crimson/10 hover:bg-threat-crimson hover:text-white transition-colors">Plan Drive</button></td>
+                                    </tr>
+                                    <tr className="hover:bg-surface-panel-active/50 transition-colors">
+                                        <td className="px-6 py-4 font-bold text-on-surface">Satara (Karad)</td>
+                                        <td className="px-6 py-4 text-text-muted">28</td>
+                                        <td className="px-6 py-4 text-text-muted">890</td>
+                                        <td className="px-6 py-4"><span className="px-2 py-1 bg-radar-emerald/20 text-radar-emerald text-xs font-bold rounded">89% (SAFE)</span></td>
+                                        <td className="px-6 py-4"><span className="px-2 py-1 bg-radar-emerald/20 text-radar-emerald text-xs font-bold rounded">92% (SAFE)</span></td>
+                                        <td className="px-6 py-4"><button className="text-primary font-bold text-sm hover:underline">View Log</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                )}
+
+                {activeTab === 'team' && (
+                <div className="max-w-[1400px] mx-auto flex flex-col gap-6 animate-in fade-in zoom-in duration-300">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <h2 className="text-2xl font-bold font-title-lg text-primary">Field Team & Co-workers</h2>
+                        <button className="bg-surface-container-high text-on-surface border border-border-grid px-4 py-2 rounded-lg font-bold shadow-sm hover:bg-surface-panel-active transition-colors flex items-center gap-2">
+                            <span className="material-symbols-outlined">person_add</span> Register Worker
+                        </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* Worker Card 1 */}
+                        <div className="bg-surface-panel border border-border-grid rounded-xl p-5 flex flex-col gap-4 shadow-sm relative overflow-hidden">
+                            <div className="absolute top-0 right-0 bg-radar-emerald text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider">Available</div>
+                            <div className="flex items-center gap-4">
+                                <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">SM</div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-lg text-on-surface">Suresh Mane</span>
+                                    <span className="text-text-muted text-sm font-label-sm uppercase">Paravet / Field Tech</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-2 mt-2 border-t border-border-grid pt-4">
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-text-muted">Assigned Zone:</span>
+                                    <span className="font-bold text-on-surface">Pune, Shirur</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-text-muted">Active Cases:</span>
+                                    <span className="font-bold text-telemetry-saffron">1 High Risk</span>
+                                </div>
+                            </div>
+                            <button className="mt-2 w-full py-2 bg-surface-container-high hover:bg-primary hover:text-on-primary transition-colors rounded-lg font-bold text-sm border border-border-grid">Assign New Case</button>
+                        </div>
+                        
+                        {/* Worker Card 2 */}
+                        <div className="bg-surface-panel border border-border-grid rounded-xl p-5 flex flex-col gap-4 shadow-sm relative overflow-hidden">
+                            <div className="absolute top-0 right-0 bg-threat-crimson text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider">In Field (Busy)</div>
+                            <div className="flex items-center gap-4">
+                                <div className="w-14 h-14 rounded-full bg-telemetry-amber/20 flex items-center justify-center text-telemetry-amber font-bold text-xl">VJ</div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-lg text-on-surface">Vijay Jadhav</span>
+                                    <span className="text-text-muted text-sm font-label-sm uppercase">Lab Technician</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-2 mt-2 border-t border-border-grid pt-4">
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-text-muted">Assigned Zone:</span>
+                                    <span className="font-bold text-on-surface">Kolhapur</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-text-muted">Active Cases:</span>
+                                    <span className="font-bold text-threat-crimson">3 Samples Transit</span>
+                                </div>
+                            </div>
+                            <button className="mt-2 w-full py-2 bg-surface-base text-text-muted cursor-not-allowed rounded-lg font-bold text-sm border border-border-grid">Cannot Assign (Max Load)</button>
+                        </div>
+
+                        {/* Worker Card 3 */}
+                        <div className="bg-surface-panel border border-border-grid rounded-xl p-5 flex flex-col gap-4 shadow-sm relative overflow-hidden">
+                            <div className="absolute top-0 right-0 bg-radar-emerald text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider">Available</div>
+                            <div className="flex items-center gap-4">
+                                <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">RP</div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-lg text-on-surface">Ramesh Pawar</span>
+                                    <span className="text-text-muted text-sm font-label-sm uppercase">Livestock Insp.</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-2 mt-2 border-t border-border-grid pt-4">
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-text-muted">Assigned Zone:</span>
+                                    <span className="font-bold text-on-surface">Satara</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-text-muted">Active Cases:</span>
+                                    <span className="font-bold text-radar-emerald">0 Pending</span>
+                                </div>
+                            </div>
+                            <button className="mt-2 w-full py-2 bg-surface-container-high hover:bg-primary hover:text-on-primary transition-colors rounded-lg font-bold text-sm border border-border-grid">Assign New Case</button>
+                        </div>
+                    </div>
+                </div>
+                )}
+
             </main>
         </div>
     );
