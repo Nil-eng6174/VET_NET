@@ -111,18 +111,6 @@ export default function VetDashboard() {
                         }
                     }
 
-                    if (data.clusters) {
-                        data.clusters.forEach((cluster: any) => {
-                            L.circle(cluster.center, {
-                                color: 'red',
-                                fillColor: '#f03',
-                                fillOpacity: 0.2,
-                                radius: cluster.radius_km * 1000 // Convert km to meters for Leaflet
-                            }).addTo(mapRef.current)
-                              .bindPopup(`<b>🚨 CLUSTER THREAT</b><br>${cluster.count} cases of ${cluster.symptom}`);
-                        });
-                    }
-
                     // Render Symptom Pie Chart
                     const symCtx = (document.getElementById('symptomChart') as HTMLCanvasElement)?.getContext('2d');
                     if (symCtx && data.chart_labels) {
