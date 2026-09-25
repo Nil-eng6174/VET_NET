@@ -444,7 +444,6 @@ def farmer_history():
 
 # ================== API DASHBOARD ================== #
 
-@app.route("/api/vet/dashboard_data", methods=["GET"])
 
 import math
 def haversine(lat1, lon1, lat2, lon2):
@@ -510,6 +509,7 @@ def detect_clusters(all_reports):
             })
     return clusters
 
+@app.route("/api/vet/dashboard_data", methods=["GET"])
 def vet_dashboard_data():
     if session.get("role") != "Veterinarian":
         return jsonify({"success": False, "message": "Veterinarian login required."}), 403
