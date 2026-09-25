@@ -108,14 +108,14 @@ export default function FarmerDashboard() {
         <div className="bg-surface-base text-on-surface font-body-md flex flex-col min-h-screen">
             {/* Tactical Header */}
             <header className="fixed top-0 inset-x-0 z-50 bg-surface-panel/90 backdrop-blur-xl pt-safe shadow-sm border-b border-border-grid">
-                <div className="h-24 flex flex-col justify-center px-6">
+                <div className="h-auto min-h-20 flex flex-col justify-center px-3 py-2 md:px-6">
                     <div className="flex items-center justify-between gap-4">
                         <div className="flex items-center gap-4 min-w-0">
-                            <img alt="Brand logo" className="h-10 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1XLDFrDglF2n3r1uftl6goq7UaqNywM2Y8F1AiGpEF9f2yjmaeRYSn6PlDywK2f9wJ1UUksm88RBO2IVnE0Ww_w3t1JskqMyVGZCs4ChjZiCwmC0Zv6qG8IENUxijWZ3KJXLy6oS21lwJg1Bi3e7vYCnNIWDJ96uf5OVMlXqGR4YTnqu595XvzdXTj-U_OT2TihUn11A2hBufR-4lKiCjQHOPqDL75oLHa3ZzgdWwWO4m0_jvF6QCL-MM4"/>
+                            <span className="material-symbols-outlined text-[32px] text-telemetry-saffron flex-shrink-0">shield</span>
                             <div className="flex flex-col min-w-0">
                                 <div className="flex items-center gap-2">
                                     <span className="font-title-lg text-data-parchment tracking-tight text-xl">{t('app.title')}</span>
-                                    <span className="px-2 py-0.5 bg-surface-panel-active text-radar-emerald font-label-sm uppercase rounded">{t('app.subtitle')}</span>
+                                    <span className="hidden sm:inline-block px-2 py-0.5 bg-surface-panel-active text-radar-emerald font-label-sm uppercase rounded">{t('app.subtitle')}</span>
                                 </div>
                                 <span className="font-body-sm text-text-muted truncate mt-0.5">{t('farmer.header.triage')}</span>
                             </div>
@@ -256,8 +256,8 @@ export default function FarmerDashboard() {
                     )}
 
                     {/* Report Form Component (Pasu Style adapted to Light Tactical Minimal) */}
-                    <section className="flex flex-col w-full bg-surface-panel border border-border-grid p-6 shadow-sm rounded-xl mb-6">
-                        <form className="flex flex-col gap-6 w-full" onSubmit={handleSubmit}>
+                    <section className="flex flex-col w-full bg-surface-panel border border-border-grid p-4 md:p-6 shadow-sm rounded-xl mb-4 md:mb-6">
+                        <form className="flex flex-col gap-4 md:gap-6 w-full" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="flex flex-col gap-2">
                                     <label className="font-title-md text-on-surface">{t('farmer.form.animalType')}</label>
@@ -284,10 +284,10 @@ export default function FarmerDashboard() {
 
                             <div className="flex flex-col gap-2 mt-2">
                                 <span className="font-title-md text-on-surface">{t('farmer.form.additionalSymptoms')}</span>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-1 bg-surface-base p-4 rounded-lg border border-border-grid">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-1 bg-surface-base p-3 md:p-4 rounded-lg border border-border-grid">
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input name="additionalSymptoms" className="rounded border-outline-variant text-telemetry-saffron focus:ring-telemetry-saffron h-5 w-5 accent-telemetry-saffron" type="checkbox" value="Lethargy"/>
-                                        <span className="font-body-md text-lg">{t('farmer.addsymp.lethargy')}</span>
+                                        <span className="font-body-md text-base md:text-lg">{t('farmer.addsymp.lethargy')}</span>
                                     </label>
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input name="additionalSymptoms" className="rounded border-outline-variant text-telemetry-saffron focus:ring-telemetry-saffron h-5 w-5 accent-telemetry-saffron" type="checkbox" value="Coughing"/>
@@ -295,7 +295,7 @@ export default function FarmerDashboard() {
                                     </label>
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input name="additionalSymptoms" className="rounded border-outline-variant text-telemetry-saffron focus:ring-telemetry-saffron h-5 w-5 accent-telemetry-saffron" type="checkbox" value="Nasal Discharge"/>
-                                        <span className="font-body-md text-lg">{t('farmer.addsymp.nasal')}</span>
+                                        <span className="font-body-md text-base md:text-lg">{t('farmer.addsymp.nasal')}</span>
                                     </label>
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input name="additionalSymptoms" className="rounded border-outline-variant text-telemetry-saffron focus:ring-telemetry-saffron h-5 w-5 accent-telemetry-saffron" type="checkbox" value="Drooling"/>
@@ -304,7 +304,7 @@ export default function FarmerDashboard() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-1 md:mt-2">
                                 <div className="flex flex-col gap-2">
                                     <label className="font-title-md text-on-surface">{t('farmer.form.duration')}</label>
                                     <input name="duration" className="rounded-lg border border-border-grid bg-surface-base py-3 px-4 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-lg outline-none w-full font-mono" min="1" placeholder="e.g., 3" type="number" required />

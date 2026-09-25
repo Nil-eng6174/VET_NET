@@ -61,13 +61,13 @@ export default function Home() {
     return (
         <div className="bg-surface-base text-on-surface min-h-screen flex flex-col relative overflow-y-auto">
             {/* Header */}
-            <header className="fixed top-0 inset-x-0 z-50 bg-surface-panel/90 backdrop-blur-xl shadow-sm h-16 px-4 md:px-6 flex items-center justify-between border-b border-border-grid">
+            <header className="fixed top-0 inset-x-0 z-50 bg-surface-panel/90 backdrop-blur-xl shadow-sm h-auto min-h-16 py-2 px-3 md:px-6 flex flex-wrap items-center justify-between border-b border-border-grid gap-2">
                 <div className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[32px] text-telemetry-saffron flex-shrink-0">shield</span>
                     <div className="flex flex-col min-w-0">
                         <div className="flex items-center gap-1.5">
-                            <span className="font-title-lg text-data-parchment tracking-tight truncate">{t('app.title')}</span>
-                            <span className="px-1 py-0.5 bg-surface-panel-active text-radar-emerald font-label-sm uppercase rounded-sm">{t('app.subtitle')}</span>
+                            <span className="font-title-lg text-data-parchment tracking-tight truncate text-lg md:text-xl">{t('app.title')}</span>
+                            <span className="hidden sm:inline-block px-1 py-0.5 bg-surface-panel-active text-radar-emerald font-label-sm uppercase rounded-sm">{t('app.subtitle')}</span>
                         </div>
                     </div>
                 </div>
