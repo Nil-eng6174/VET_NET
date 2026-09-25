@@ -383,6 +383,7 @@ export default function VetDashboard() {
                         </>
                     )}
                 </div>
+                )}
 
                 {/* Case Management Modal */}
                 {selectedCase && (
