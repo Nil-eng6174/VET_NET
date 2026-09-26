@@ -726,6 +726,7 @@ def chat():
         return jsonify({"success": False, "message": "Message is required."})
     
     try:
+        from chatbot import get_chat_response
         response = get_chat_response(query, language=language)
         return jsonify({"success": True, "reply": response})
     except Exception as e:
