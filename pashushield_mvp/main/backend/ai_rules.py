@@ -35,6 +35,10 @@ def calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality
             score = data.get("score", 50)
             risk_level = data.get("risk_level", "MEDIUM")
             reasons = data.get("reasons", [data.get("disease", "Unknown Disease")])
+            if isinstance(reasons, str):
+                reasons = [reasons]
+            elif not isinstance(reasons, list):
+                reasons = ["Unknown reasons"]
             image_description = data.get("description", "")
             
             if "disease" in data and data["disease"] not in reasons:
