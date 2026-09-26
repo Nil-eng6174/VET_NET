@@ -100,19 +100,34 @@ export default function Chatbot() {
         window.speechSynthesis.cancel(); // Stop any ongoing speech
         const utterance = new SpeechSynthesisUtterance(text);
         
+        // Default to English India
         let targetLang = 'en-IN';
         if (language === 'mr') targetLang = 'mr-IN';
         if (language === 'gu') targetLang = 'gu-IN';
         
         utterance.lang = targetLang;
+        utterance.rate = 0.9; // Slightly slower for better regional pronunciation
         
         // Find best native voice available on device
         const voices = window.speechSynthesis.getVoices();
-        let selectedVoice = voices.find(v => v.lang.replace('_', '-').toLowerCase() === targetLang.toLowerCase());
-        
-        // Fallback for Marathi to Hindi voice since Devanagari script is identical
-        if (!selectedVoice && language === 'mr') {
-            selectedVoice = voices.find(v => v.lang.includes('hi'));
+        let selectedVoice = null;
+
+        if (language === 'mr') {
+            // 1. Try exact Marathi match by language code or name
+            selectedVoice = voices.find(v => v.lang.toLowerCase().includes('mr') || v.name.toLowerCase().includes('marathi'));
+            // 2. Try exact Hindi match (Devanagari script reads Marathi well)
+            if (!selectedVoice) {
+                selectedVoice = voices.find(v => v.lang.toLowerCase().includes('hi') || v.name.toLowerCase().includes('hindi'));
+            }
+            // 3. Try any Indian voice as a last resort
+            if (!selectedVoice) {
+                selectedVoice = voices.find(v => v.lang.toLowerCase().includes('in'));
+            }
+        } else if (language === 'gu') {
+            selectedVoice = voices.find(v => v.lang.toLowerCase().includes('gu') || v.name.toLowerCase().includes('gujarati'));
+            if (!selectedVoice) selectedVoice = voices.find(v => v.lang.toLowerCase().includes('in'));
+        } else {
+            selectedVoice = voices.find(v => v.lang.toLowerCase().includes('en-in') || v.name.toLowerCase().includes('india'));
         }
         
         if (selectedVoice) {
