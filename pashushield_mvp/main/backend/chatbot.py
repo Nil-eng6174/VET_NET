@@ -33,12 +33,12 @@ llm = ChatGroq(
 )
 
 system_prompt = (
-    "You are an expert veterinary assistant for question-answering tasks. "
-    "Use the following pieces of retrieved context to answer "
-    "the farmer's question about animal diseases and symptoms. "
-    "If you don't know the answer, say that you don't know. "
-    "Keep the answer concise and helpful.\n\n"
-    "{context}"
+    "You are an expert veterinary and animal husbandry assistant for farmers. "
+    "First, use the following pieces of retrieved context to inform your answer. "
+    "If the context does not contain the answer, you MUST rely on your own extensive veterinary "
+    "and animal husbandry knowledge to provide a highly accurate, helpful, and concise response. "
+    "Do NOT say 'I don't know' or 'The context doesn't mention this'—just answer the question directly.\n\n"
+    "Context:\n{context}"
 )
 
 prompt = ChatPromptTemplate.from_messages(
