@@ -16,7 +16,7 @@ def calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality
             prompt = f"First, verify if the image contains an animal or livestock. If it does not (e.g. it is a human or an unrelated object), return ONLY a valid JSON object with {{'is_animal': false}}. If it DOES contain an animal, analyze the image along with these details: animal type: {animal}, main symptom: {symptom}, additional symptoms: {additional_symptoms}, notes: {notes}, duration: {duration}, mortality: {num_mortality}. Provide a description of the suspected disease and all other visible things in 100-150 words. Also assign a risk score (0-100), assign a risk level (LOW, MEDIUM, HIGH). Return ONLY a valid JSON object with keys: 'is_animal' (boolean), 'disease' (string), 'score' (number), 'risk_level' (string), 'reasons' (list of strings), and 'description' (string, 100-150 words)."
             
             response = client.models.generate_content(
-                model='gemini-3.6-flash',
+                model='gemini-1.5-flash',
                 contents=[uploaded_file, prompt]
             )
             
