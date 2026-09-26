@@ -9,6 +9,7 @@ from sms import send_sms
 from textbee import send_textbee_sms
 from datetime import datetime
 from twilio.twiml.voice_response import VoiceResponse, Gather
+from chatbot import get_chat_response
 
 
 app = Flask(__name__)
@@ -726,7 +727,6 @@ def chat():
         return jsonify({"success": False, "message": "Message is required."})
     
     try:
-        from chatbot import get_chat_response
         response = get_chat_response(query, language=language)
         return jsonify({"success": True, "reply": response})
     except Exception as e:
