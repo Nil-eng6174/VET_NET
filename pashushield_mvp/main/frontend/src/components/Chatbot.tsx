@@ -81,6 +81,9 @@ export default function Chatbot() {
             
             recognitionRef.current.onerror = (event: any) => {
                 console.error("Speech recognition error", event.error);
+                if (event.error === 'not-allowed') {
+                    alert("Microphone access blocked! If you are on mobile, you MUST use a secure HTTPS link (like Ngrok) for the microphone to work, not an IP address.");
+                }
                 setIsListening(false);
             };
             
@@ -97,16 +100,35 @@ export default function Chatbot() {
         window.speechSynthesis.cancel(); // Stop any ongoing speech
         const utterance = new SpeechSynthesisUtterance(text);
         
-        if (language === 'mr') {
-            utterance.lang = 'mr-IN';
-        } else if (language === 'gu') {
-            utterance.lang = 'gu-IN';
-        } else {
-            utterance.lang = 'en-IN';
+        let targetLang = 'en-IN';
+        if (language === 'mr') targetLang = 'mr-IN';
+        if (language === 'gu') targetLang = 'gu-IN';
+        
+        utterance.lang = targetLang;
+        
+        // Find best native voice available on device
+        const voices = window.speechSynthesis.getVoices();
+        let selectedVoice = voices.find(v => v.lang.replace('_', '-').toLowerCase() === targetLang.toLowerCase());
+        
+        // Fallback for Marathi to Hindi voice since Devanagari script is identical
+        if (!selectedVoice && language === 'mr') {
+            selectedVoice = voices.find(v => v.lang.includes('hi'));
+        }
+        
+        if (selectedVoice) {
+            utterance.voice = selectedVoice;
         }
         
         window.speechSynthesis.speak(utterance);
     };
+    
+    // Load voices eagerly so they are ready when needed
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+            window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+            window.speechSynthesis.getVoices();
+        }
+    }, []);
 
     // Auto-speak newest bot message
     useEffect(() => {
@@ -129,8 +151,13 @@ export default function Chatbot() {
             else if (language === 'gu') recognitionRef.current.lang = 'gu-IN';
             else recognitionRef.current.lang = 'en-IN';
             
-            recognitionRef.current?.start();
-            setIsListening(true);
+            try {
+                recognitionRef.current?.start();
+                setIsListening(true);
+            } catch (err) {
+                console.error("Speech recognition start failed:", err);
+                setIsListening(false);
+            }
         }
     };
 
