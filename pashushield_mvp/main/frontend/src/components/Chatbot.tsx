@@ -224,7 +224,7 @@ export default function Chatbot() {
                 const res = await fetch('/api/submit', { method: 'POST', body: formData });
                 const data = await res.json();
                 
-                if (data.success) {
+                if (data.status === 'success') {
                     setMessages(prev => [...prev, { sender: 'bot', text: `${ldict.submitSuccess} Risk Level: ${data.risk_level}. Recommendation: ${data.recommendation}` }]);
                 } else {
                     setMessages(prev => [...prev, { sender: 'bot', text: "Failed to submit report." }]);
@@ -257,7 +257,7 @@ export default function Chatbot() {
             });
             const data = await res.json();
             
-            if (data.success) {
+            if (data.status === 'success') {
                 setMessages(prev => [...prev, { sender: 'bot', text: data.reply }]);
             } else {
                 setMessages(prev => [...prev, { sender: 'bot', text: 'Error connecting to the assistant.' }]);
