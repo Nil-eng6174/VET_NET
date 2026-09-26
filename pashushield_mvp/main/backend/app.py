@@ -312,7 +312,7 @@ def register():
     other_role_name = "Veterinarian" if role == "Farmer" else "Farmer"
     other_sheet = workbook["Veterinarians" if role == "Farmer" else "Farmers"]
     for row in other_sheet.iter_rows(min_row=2, values_only=True):
-        if row and row[2] == aadhaar:
+        if row and str(row[2]).strip() == str(aadhaar).strip():
             return jsonify({"success": False, "message": f"This Aadhaar is already registered as a {other_role_name}. Please login as {other_role_name}."})
 
     if role == "Farmer":
@@ -335,7 +335,7 @@ def login():
     sheet = workbook[sheet_name]
     
     for row in sheet.iter_rows(min_row=2, values_only=True):
-        if row and row[2] == aadhaar:
+        if row and str(row[2]).strip() == str(aadhaar).strip():
             # Login successful
             session["role"] = role
             session["aadhaar"] = aadhaar
