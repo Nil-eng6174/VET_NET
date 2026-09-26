@@ -26,7 +26,7 @@ retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":
 
 print("Initializing LLM and Chain...")
 llm = ChatGroq(
-    model_name="allam-2-7b",
+    model_name="llama3-8b-8192",
     temperature=0.4,
     max_tokens=500,
     api_key=os.getenv("GROQ_API_KEY")
