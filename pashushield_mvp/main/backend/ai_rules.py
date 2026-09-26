@@ -138,9 +138,10 @@ def calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality
     return score, risk_level, reasons, image_description
 
 
+from chatbot import get_chat_response
+
 def get_recommendation(risk_level, symptom=None, additional_symptoms=None, notes=None, image_description=None, language="en"):
     try:
-        from chatbot import get_chat_response
         
         if image_description:
             query = f"Based on the following AI visual analysis of the animal: '{image_description}', provide a brief, actionable recommendation. The assessed risk level is {risk_level}."
