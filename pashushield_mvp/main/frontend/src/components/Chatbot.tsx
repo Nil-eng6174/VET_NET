@@ -257,7 +257,7 @@ export default function Chatbot() {
             });
             const data = await res.json();
             
-            if (data.status === 'success') {
+            if (data.success) {
                 setMessages(prev => [...prev, { sender: 'bot', text: data.reply }]);
             } else {
                 setMessages(prev => [...prev, { sender: 'bot', text: 'Error connecting to the assistant.' }]);
