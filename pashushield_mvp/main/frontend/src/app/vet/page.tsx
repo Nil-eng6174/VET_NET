@@ -132,6 +132,24 @@ export default function VetDashboard() {
                         });
                     }
 
+                    if (data.recent_reports) {
+                        data.recent_reports.forEach((report: any) => {
+                            if (report.lat && report.lng) {
+                                const lat = parseFloat(report.lat);
+                                const lng = parseFloat(report.lng);
+                                if (!isNaN(lat) && !isNaN(lng)) {
+                                    L.circleMarker([lat, lng], {
+                                        color: '#3B82F6',
+                                        fillColor: '#3B82F6',
+                                        fillOpacity: 1.0,
+                                        radius: 5
+                                    }).addTo(mapRef.current)
+                                      .bindPopup(`<b>${report.animal} (${report.symptom})</b><br>${report.locality}<br>Risk: ${report.risk}`);
+                                }
+                            }
+                        });
+                    }
+
                     // Render Symptom Pie Chart
                     const symCtx = (document.getElementById('symptomChart') as HTMLCanvasElement)?.getContext('2d');
                     if (symCtx && data.chart_labels) {
@@ -295,7 +313,7 @@ export default function VetDashboard() {
                                 <div className="bg-surface-panel border border-border-grid rounded-xl p-6 lg:col-span-8 flex flex-col min-h-[380px] shadow-sm">
                                     <div className="flex justify-between items-center mb-4">
                                         <h3 className="text-lg font-bold font-title-md text-data-parchment uppercase tracking-wide">Regional Outbreak Map</h3>
-                                        <button className="text-sm bg-surface-panel-active text-text-muted border border-border-grid px-3 py-1.5 rounded-md hover:bg-primary/20 hover:text-primary transition-colors flex items-center gap-1 font-bold uppercase">
+                                        <button onClick={() => { if (mapRef.current) mapRef.current.setView([18.5204, 73.8567], 7); }} className="text-sm bg-surface-panel-active text-text-muted border border-border-grid px-3 py-1.5 rounded-md hover:bg-primary/20 hover:text-primary transition-colors flex items-center gap-1 font-bold uppercase">
                                             <span className="material-symbols-outlined text-[16px]">restart_alt</span> Reset Map
                                         </button>
                                     </div>
