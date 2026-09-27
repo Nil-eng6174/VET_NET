@@ -81,6 +81,7 @@ export default function FarmerDashboard() {
             formData.append('farmer_mobile', farmer.mobile);
             formData.append('farmer_locality', farmer.locality);
             formData.append('farmer_aadhaar', farmer.aadhaar);
+            formData.append('language', language);
 
             const res = await fetch('/api/submit', {
                 method: 'POST',

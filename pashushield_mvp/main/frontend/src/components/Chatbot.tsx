@@ -215,6 +215,7 @@ export default function Chatbot() {
                 formData.append('symptom', reportData.symptom);
                 formData.append('duration', reportData.duration);
                 formData.append('notes', finalNotes);
+                formData.append('language', language);
                 
                 // Fallback farmer identity for chatbot submission MVP
                 formData.append('farmer_name', "Voice User");

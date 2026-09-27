@@ -3,7 +3,7 @@ from google import genai
 from google.genai import types
 import json
 
-def calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality=0, image_path=None, notes=None):
+def calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality=0, image_path=None, notes=None, language='en'):
     gemini_api_key = os.getenv("GEMINI_API_KEY")
     image_description = None
 
@@ -13,7 +13,9 @@ def calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality
             # Upload the file using the Files API
             uploaded_file = client.files.upload(file=image_path)
             
-            prompt = f"First, verify if the image contains an animal or livestock. If it does not (e.g. it is a human or an unrelated object), return ONLY a valid JSON object with {{'is_animal': false}}. If it DOES contain an animal, analyze the image along with these details: animal type: {animal}, main symptom: {symptom}, additional symptoms: {additional_symptoms}, notes: {notes}, duration: {duration}, mortality: {num_mortality}. Provide a description of the suspected disease and all other visible things in 100-150 words. Also assign a risk score (0-100), assign a risk level (LOW, MEDIUM, HIGH). Return ONLY a valid JSON object with keys: 'is_animal' (boolean), 'disease' (string), 'score' (number), 'risk_level' (string), 'reasons' (list of strings), and 'description' (string, 100-150 words)."
+            prompt = f"First, verify if the image contains an animal or livestock. If it does not (e.g. it is a human or an unrelated object), return ONLY a valid JSON object with {{'is_animal': false}}. If it DOES contain an animal, analyze the image along with these details: animal type: {animal}, main symptom: {symptom}, additional symptoms: {additional_symptoms}, notes: {notes}, duration: {duration}, mortality: {num_mortality}. Provide a description of the suspected disease and all other visible things in 100-150 words. Also assign a risk score (0-100), assign a risk level (LOW, MEDIUM, HIGH). If the requested language is 'mr', provide the text values (disease, reasons, description) entirely in Marathi. If 'gu', provide them in Gujarati. Return ONLY a valid JSON object with keys: 'is_animal' (boolean), 'disease' (string), 'score' (number), 'risk_level' (string), 'reasons' (list of strings), and 'description' (string, 100-150 words)."
+            if language != 'en':
+                prompt += f" You MUST translate the 'disease', 'reasons', and 'description' into {language}." 
             
             response = client.models.generate_content(
                 model='gemini-3.8-flash',

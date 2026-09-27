@@ -633,7 +633,7 @@ def submit():
         image_path = os.path.join(UPLOAD_FOLDER, image_name) if image_name else None
         
         try:
-            score, risk_level, reasons, image_desc = calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality=numMortality, image_path=image_path, notes=notes)
+            score, risk_level, reasons, image_desc = calculate_risk(animal, symptom, additional_symptoms, duration, num_mortality=numMortality, image_path=image_path, notes=notes, language=language)
         except ValueError as ve:
             if str(ve) == "NOT_LIVESTOCK":
                 return jsonify({
