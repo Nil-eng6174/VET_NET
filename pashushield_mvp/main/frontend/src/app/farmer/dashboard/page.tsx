@@ -171,7 +171,7 @@ export default function FarmerDashboard() {
                                 <span className="material-symbols-outlined text-threat-crimson text-[40px]">cloud_off</span>
                                 <span className="font-body-md text-threat-crimson">{error}</span>
                                 <button
-                                    onClick={loadHistory}
+                                    onClick={() => window.location.reload()}
                                     className="mt-2 bg-primary text-white font-title-md py-2 px-6 rounded-lg hover:bg-primary-container transition-colors shadow-sm"
                                 >
                                     {t('farmer.dashboard.retry')}
