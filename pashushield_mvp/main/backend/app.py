@@ -56,6 +56,7 @@ def init_excel():
             if "Alerts" not in sheets:
                 workbook.create_sheet("Alerts").append(ALERT_HEADERS)
             workbook.save(EXCEL_FILE)
+            workbook.close()
         except Exception as e:
             print(f"Error checking Excel file: {e}")
 
@@ -322,6 +323,7 @@ def register():
         sheet.append([role, name, aadhaar, mobile, locality, email])
         
     workbook.save(EXCEL_FILE)
+    workbook.close()
     return jsonify({"success": True})
 
 @app.route("/api/login", methods=["POST"])
@@ -349,7 +351,7 @@ def login():
                 "mobile": row[3],
                 "locality": row[4]
             })
-            
+    workbook.close()        
     return jsonify({"success": False, "message": "Aadhaar not found. Please register first."})
 
 @app.route("/api/logout", methods=["POST"])
@@ -442,6 +444,7 @@ def farmer_history():
             "report_count": len(history),
         }
 
+    workbook.close()
     return jsonify({
         "success": True,
         "info": info,
@@ -579,6 +582,7 @@ def vet_dashboard_data():
     recent_reports = recent_reports[:15]
     alerts = alerts[:5]
 
+    workbook.close()
     return jsonify({
         "success": True,
         "chart_labels": list(symptom_counts.keys()),
@@ -653,6 +657,7 @@ def submit():
             aadhaar, lat, lng
         ])
         workbook.save(EXCEL_FILE)
+        workbook.close()
         
         # --- OUTBREAK LOGIC TRIGGER ---
         check_outbreak_threshold(locality, animal, symptom)
