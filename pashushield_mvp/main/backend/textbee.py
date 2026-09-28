@@ -14,7 +14,7 @@ load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-TEXTBEE_API_KEY = os.getenv("TEXTBEE_API_KEY", "txb_4Z8QycbtcJ2cG4Cr4vEC7YrWE6MU4Ut9")
+TEXTBEE_API_KEY = os.getenv("TEXTBEE_API_KEY", "txb_Omax5OlLitQFeP1Ta6L1bSiYL3UbCus4")
 TEXTBEE_DEVICE_ID = os.getenv("TEXTBEE_DEVICE_ID", "")  # Set after registering device in TextBee dashboard
 TEXTBEE_API_URL = "https://api.textbee.dev/api/v1/gateway/devices/{device_id}/sendSMS"
 
