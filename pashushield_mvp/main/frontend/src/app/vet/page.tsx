@@ -52,7 +52,10 @@ export default function VetDashboard() {
 
     const focusOnMap = (lat: any, lng: any) => {
         if (!lat || !lng || !mapRef.current) return;
-        mapRef.current.flyTo([parseFloat(lat), parseFloat(lng)], 14);
+        const pLat = parseFloat(lat);
+        const pLng = parseFloat(lng);
+        if (isNaN(pLat) || isNaN(pLng)) return;
+        mapRef.current.flyTo([pLat, pLng], 14);
         document.getElementById('map')?.scrollIntoView({ behavior: 'smooth' });
     };
 
