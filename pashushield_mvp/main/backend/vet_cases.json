@@ -4,5 +4,11 @@
         "assigned_to": "FW-01 Rajesh",
         "status": "Assigned",
         "assigned_at": "2026-09-28 02:26:22"
+    },
+    {
+        "case_id": "Raosaheb Patil-2026-09-28 22:46:15",
+        "assigned_to": "FW-03 Amit",
+        "status": "Assigned",
+        "assigned_at": "2026-09-28 22:55:02"
     }
 ]

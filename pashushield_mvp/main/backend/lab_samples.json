@@ -7,5 +7,14 @@
         "status": "In Transit",
         "qr_code_url": "/uploads/qrcodes/SMP-20260928-08B7.png",
         "result": null
+    },
+    {
+        "sample_id": "SMP-20260928-8692",
+        "case_id": "Raosaheb Patil-2026-09-28 22:46:15",
+        "requested_by": "District Vet",
+        "requested_at": "2026-09-28 22:55:10",
+        "status": "In Transit",
+        "qr_code_url": "/uploads/qrcodes/SMP-20260928-8692.png",
+        "result": null
     }
 ]
